@@ -23,6 +23,6 @@ public class MemberController {
     @PostMapping(value = "/members")
     public String members(Member member){
         memberService.join(member);
-        return "member/memberForm";
+        return "redirect:members";
     }
 }
