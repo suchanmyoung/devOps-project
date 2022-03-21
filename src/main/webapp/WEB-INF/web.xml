@@ -3,10 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_4_0.xsd">
 
-	<!-- applicationContext(root-servlet) 위치 지정 -->
+	<!-- applicationContext 위치 지정 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:root-context.xml</param-value>
+		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
 	
 	<!-- 리스너 설정 -->
