@@ -11,6 +11,9 @@ public class MemberDao {
 
     SqlSession sqlSession;
 
+    public MemberDao(SqlSession sqlSession) {
+        this.sqlSession = sqlSession;
+    }
 
     public MemberDto selectMember(String id){
         MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);

@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class HomeController {
 
-	@Autowired
 	MemberService memberService;
+
+	public HomeController(MemberService memberService) {
+		this.memberService = memberService;
+	}
 
 	@GetMapping(value = "/")
 	public String home(Locale locale, Model model) {
