@@ -4,13 +4,18 @@
 <html>
 <head>
 	<title>Home</title>
-	<script src="/resources/js/index.js"/>
+	<script src="../../resources/js/index.js"></script>
 </head>
 <script>
 	<c:if test="${not empty successMsg}">
-		let loginSuccessMsg = "${successMsg}";
-		let redirectUrl = "${redirectUrl}"
-		signupSuccess(loginSuccessMsg, redirectUrl);
+	    let signUpSuccessMsg = "${successMsg}";
+		let redirectUrl = "${redirectUrl}";
+		signupSuccess(signUpSuccessMsg, redirectUrl);
+	</c:if>
+
+	<c:if test="${not empty loginMember}">
+		let loginMemberName = "${loginMember.name}";
+		loginSuccess(loginMemberName);
 	</c:if>
 </script>
 <body>

@@ -45,6 +45,17 @@
 
 				</li>
 			</ul>
+			<ul class="container">
+				<li class="item center">
+					비밀번호
+				</li>
+				<li class="item">
+					<input type="passwordCorr" placeholder="비밀번호를 입력하세요." name="passwordCorr" required="required">
+				</li>
+				<li class="item">
+
+				</li>
+			</ul>
 				<ul class="container">
 				<li class="item center">
 					전화번호

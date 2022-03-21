@@ -6,5 +6,5 @@ public interface MemberDao {
 
     void save(Member member);
 
-    Member findById(Long memberId);
+    Member findById(String loginId, String password);
 }

@@ -23,7 +23,8 @@ public class MemberDaoImpl implements MemberDao{
     }
 
     @Override
-    public Member findById(Long memberId) {
-        return null;
+    public Member findById(String loginId, String password) {
+        MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+        return mapper.findMemberById(loginId, password);
     }
 }

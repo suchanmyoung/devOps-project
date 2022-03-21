@@ -1,9 +1,6 @@
 package com.x1.chan.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
@@ -14,6 +11,7 @@ public class Member {
     private Long accountId; // 계정 아이디(Increment, PK)
     private String loginId; // 로그인 아이디
     private String password; // 로그인 패스워드
+    private String passwordCorr; // 패스워드 확인
     private String userType; // 유저 타입(일반 유저/어드민)
     private String userEmail; // 이메일
     private String name; // 이름
