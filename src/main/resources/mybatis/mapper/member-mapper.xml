@@ -2,7 +2,29 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.x1.chan.mapper.MemberMapper">
-    <select id="selectMember" parameterType="String" resultType="memberDto">
-        SELECT id from emoney."member" where id = #{id}
-    </select>
+<!--    <resultMap id="memberResultMap" type="member">-->
+<!--        <result column="account_id" property="accountId" jdbcType="NVARCHAR" javaType="Long"/>-->
+<!--        <result column="login_id" property="loginId" jdbcType="NVARCHAR" javaType="String"/>-->
+<!--        <result column="password" property="password" jdbcType="NVARCHAR" javaType="String"/>-->
+<!--        <result column="user_Type" property="userType" jdbcType="NVARCHAR" javaType="String"/>-->
+<!--        <result column="user_Email" property="userEmail" jdbcType="NVARCHAR" javaType="String"/>-->
+<!--        <result column="name" property="name" jdbcType="NVARCHAR" javaType="String"/>-->
+<!--        <result column="nickname" property="nickName" jdbcType="NVARCHAR" javaType="String"/>-->
+<!--        <result column="regDate" property="regDate" jdbcType="DATE" javaType="Date"/>-->
+<!--        <result column="birth_date" property="birthDate" jdbcType="DATE" javaType="Date"/>-->
+<!--        <result column="phone_number" property="phoneNumber" jdbcType="NVARCHAR" javaType="String"/>-->
+<!--        <result column="use_YN" property="useYN" jdbcType="CHAR" javaType="Character"/>-->
+<!--    </resultMap>-->
+    
+    <insert id="joinMember" parameterType="member">
+        INSERT INTO MEMBER(ACCOUNT_ID, LOGIN_ID, PASSWORD, USER_TYPE, USER_EMAIL, NAME, NICKNAME)
+        VALUES(SEQ_ACCOUNTID.NEXTVAL,
+                                  #{loginId},
+                                  #{password},
+                                  #{userEmail},
+                                  #{name},
+                                  #{nickName},
+                                  #{phoneNumber}
+        )
+    </insert>
 </mapper>

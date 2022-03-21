@@ -1,21 +1,10 @@
 package com.x1.chan.service;
 
-import com.x1.chan.dao.MemberDao;
-import com.x1.chan.dto.MemberDto;
-import org.springframework.stereotype.Service;
+import com.x1.chan.domain.Member;
 
-@Service
-public class MemberService {
+public interface MemberService {
 
-    private static MemberDao memberDao;
+    void join(Member member);
 
-    public MemberService(MemberDao memberDao) {
-        this.memberDao = memberDao;
-    }
-
-    public MemberDto selectMember(String id) {
-        MemberDto memberDto = memberDao.selectMember(id);
-        return memberDto;
-    }
-
+    Member findMemberById(Long memberId);
 }

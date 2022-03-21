@@ -1,24 +1,10 @@
 package com.x1.chan.dao;
 
-import com.x1.chan.dto.MemberDto;
-import com.x1.chan.mapper.MemberMapper;
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import com.x1.chan.domain.Member;
 
-@Repository
-public class MemberDao {
+public interface MemberDao {
 
-    SqlSession sqlSession;
+    void save(Member member);
 
-    public MemberDao(SqlSession sqlSession) {
-        this.sqlSession = sqlSession;
-    }
-
-    public MemberDto selectMember(String id){
-        MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-        MemberDto memberDto = mapper.selectMember(id);
-        return memberDto;
-    }
-
+    Member findById(Long memberId);
 }

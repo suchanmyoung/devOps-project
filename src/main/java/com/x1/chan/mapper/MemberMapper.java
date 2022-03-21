@@ -1,7 +1,7 @@
 package com.x1.chan.mapper;
 
-import com.x1.chan.dto.MemberDto;
+import com.x1.chan.domain.Member;
 
 public interface MemberMapper {
-      MemberDto selectMember(String id);
+      void joinMember(Member member);
 }

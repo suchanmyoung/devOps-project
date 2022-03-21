@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias type="com.x1.chan.dto.MemberDto" alias="memberDto"/>
+        <typeAlias type="com.x1.chan.domain.Member" alias="member"/>
     </typeAliases>
 
 </configuration>
