@@ -8,19 +8,17 @@
 </head>
 <script>
 	<c:if test="${not empty successMsg}">
-	    let signUpSuccessMsg = "${successMsg}";
-		let redirectUrl = "${redirectUrl}";
-		signupSuccess(signUpSuccessMsg, redirectUrl);
+		signupSuccess(${successMsg}, ${redirectUrl});
 	</c:if>
 
 	<c:if test="${not empty loginMember}">
-		let loginMemberName = "${loginMember.name}";
-		loginSuccess(loginMemberName);
+		loginSuccess(${loginMember.name});
 	</c:if>
 </script>
 <body>
 <h1>안녕하세요. 이머니입니다. 반갑습니다 ${loginMember.name} 님.</h1>
 <a href="/members">회원가입</a>
 <a href="/login">로그인</a>
+<a href="/board">게시판</a>
 </body>
 </html>

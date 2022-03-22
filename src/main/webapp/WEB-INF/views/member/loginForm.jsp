@@ -11,13 +11,11 @@
 <body>
 <script>
 	<c:if test="${not empty loginFailMsg}">
-	let loginFailMsg = "${loginFailMsg}";
-	loginFailById(loginFailMsg);
+	loginFailById(${loginFailMsg});
 	</c:if>
 
 	<c:if test="${not empty passwordFailMsg}">
-	let passwordFailMsg = "${passwordFailMsg}"
-	loginFailByPassword(passwordFailMsg);
+	loginFailByPassword(${passwordFailMsg});
 	</c:if>
 </script>
 <div class="register">
