@@ -8,12 +8,6 @@
 </head>
 <body>
 
-<script>
-	<c:if test="${not empty accessDenied}">
-		accessDeniedAlert(${accessDenied}, ${redirectUrl});
-	</c:if>
-
-</script>
 
 <div class="register">
 	<h3>게시판</h3>

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 public class BoardController {
 
     @GetMapping("/board")
-    public String board(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model){
+    public String board(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model) throws NullPointerException{
 
         if (loginMember == null) {
             model.addAttribute("accessDenied", "로그인 후 이용해주세요.");
