@@ -42,16 +42,6 @@
 					<input type="password" placeholder="비밀번호를 입력하세요." name="password" required="required">
 				</li>
 			</ul>
-			<ul class="container">
-				<li class="item center">
-					비밀번호 확인
-				</li>
-				<li class="item">
-					<input type="passwordCorr" placeholder="비밀번호 확인" name="password" required="required">
-				</li>
-				<li class="item">
-				</li>
-			</ul>
 			</li>
 			<li class="item">
 				<button class="submit">로그인</button>

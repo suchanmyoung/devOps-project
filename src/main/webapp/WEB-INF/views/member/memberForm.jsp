@@ -10,14 +10,14 @@
 <body>
 <div class="register">
 	<h3>회원가입</h3>
-	<form action="/members" method="post">
+	<form action="">
 		<div class="flex">
 			<ul class="container">
 				<li class="item center">
 					이름
 				</li>
 				<li class="item">
-					<input type="text" placeholder="이름을 입력하세요." name="name" autofocus required="required">
+					<input type="text" name="name" placeholder="이름을 입력하세요." autofocus required>
 				</li>
 				<li class="item">
 
@@ -28,10 +28,10 @@
 					아이디
 				</li>
 				<li class="item">
-					<input type="text" name="loginId" placeholder="아이디를 입력하세요." required="required">
+					<input type="text" name="loginId" placeholder="아이디를 입력하세요." required>
 				</li>
 				<li class="item">
-					<button class="idCheck">중복확인</button>
+					<button id="idCheck">중복확인</button>
 				</li>
 			</ul>
 			<ul class="container">
@@ -39,7 +39,7 @@
 					비밀번호
 				</li>
 				<li class="item">
-					<input type="password" placeholder="비밀번호를 입력하세요." name="password" required="required">
+					<input type="password" name="password" placeholder="비밀번호를 입력하세요." required>
 				</li>
 				<li class="item">
 
@@ -47,36 +47,13 @@
 			</ul>
 			<ul class="container">
 				<li class="item center">
-					비밀번호확인
+					비밀번호 확인
 				</li>
 				<li class="item">
-					<input type="text" placeholder="비밀번호를 입력하세요." name="passwordCorr" required="required">
+					<input type="password" placeholder="비밀번호를 입력하세요." required>
 				</li>
 				<li class="item">
 
-				</li>
-			</ul>
-			<ul class="container">
-				<li class="item center">
-					전화번호
-				</li>
-				<li class="item">
-					<input type="tel" name="phoneNumber" placeholder="휴대전화번호">
-				</li>
-				<li class="item">
-				</li>
-			</ul>
-			</ul>
-			</ul>
-			<ul class="container">
-				<li class="item center">
-					닉네임
-				</li>
-				<li class="item">
-					<input type="text" name="nickName" placeholder="닉네임">
-				</li>
-				<li class="item">
-					<button class="nicknameCheck">중복확인</button>
 				</li>
 			</ul>
 			<ul class="container">
@@ -84,12 +61,24 @@
 					이메일
 				</li>
 				<li class="item">
-					<input type="email" name="userEmail" placeholder="이메일">
+					<input type="email" name="userEmail" placeholder="이메일을 입력하세요." required>
 				</li>
 				<li class="item">
+
 				</li>
 			</ul>
 			<ul class="container">
+				<li class="item center">
+					휴대폰 번호
+				</li>
+				<li class="item">
+					<input type="tel" name="phoneNumber" placeholder="휴대폰 번호를 입력하세요.">
+				</li>
+				<li class="item">
+
+				</li>
+			</ul>
+				<ul class="container">
 				<li class="item center">
 
 				</li>
