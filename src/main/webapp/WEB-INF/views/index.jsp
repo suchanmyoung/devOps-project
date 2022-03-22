@@ -7,7 +7,6 @@
 	<script type="text/javascript" src="/resources/js/index.js"></script>
 </head>
 <script>
-
 	<c:if test="${not empty successMsg}">
 		let signupSuccessMsg="${successMsg}"
 		const redirectUrl="${redirectUrl}"
@@ -24,7 +23,6 @@
 		let redirectUrl = "${redirectUrl}";
 		accessDeniedAlert(accessDeniedMsg, redirectUrl);
 	</c:if>
-
 </script>
 
 <body>
@@ -33,5 +31,8 @@
 <a href="/members">회원가입</a>
 <a href="/login">로그인</a>
 <a href="/board">게시판</a>
+<form action="/logout" method="post">
+	<button type="submit">로그아웃</button>
+</form>
 </body>
 </html>
