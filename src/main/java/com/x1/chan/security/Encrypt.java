@@ -23,7 +23,7 @@ public class Encrypt {
        return encStringBuilder.toString();
     }
 
-    public static Member encryptPassword(Member member) {
+    public static Member setEncryptPassword(Member member) {
         String encryptPassword = null;
         String salt = null;
         try {
@@ -37,9 +37,8 @@ public class Encrypt {
         return member;
     }
 
-    public static String encryptPassword(String password, String salt) {
+    public static String setEncryptPassword(String password, String salt) {
                 try {
-            salt = Salt.createSalt();
             password = Encrypt.encryptSha256(password, salt);
         } catch (Exception e) {
             e.printStackTrace();

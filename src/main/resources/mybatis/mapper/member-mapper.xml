@@ -9,30 +9,28 @@
         <result column="user_Type" property="userType"/>
         <result column="user_Email" property="userEmail"/>
         <result column="name" property="name"/>
-        <result column="nickname" property="nickName"/>
+        <result column="salt" property="salt"/>
         <result column="regDate" property="regDate"/>
         <result column="phone_number" property="phoneNumber" />
         <result column="use_YN" property="useYN"/>
     </resultMap>
     
     <insert id="joinMember" parameterType="member">
-        INSERT INTO MEMBER(ACCOUNT_ID, LOGIN_ID, PASSWORD, PASSWORD_CORR, USER_EMAIL, NAME, NICKNAME, PHONE_NUMBER, SALT)
+        INSERT INTO MEMBER(ACCOUNT_ID, LOGIN_ID, PASSWORD, USER_EMAIL, NAME, PHONE_NUMBER, SALT)
         VALUES(SEQ_ACCOUNTID.NEXTVAL,
                                   #{loginId},
                                   #{password},
-                                  #{passwordCorr},
                                   #{userEmail},
                                   #{name},
-                                  #{nickName},
                                   #{phoneNumber},
                                   #{salt}
         )
     </insert>
     
     <select id="findByLoginId" parameterType="String" resultMap="memberResultMap">
-        SELECT ACCOUNT_ID, LOGIN_ID, PASSWORD, PASSWORD_CORR, USER_TYPE, USER_EMAIL, NAME, NICKNAME, REGDATE, PHONE_NUMBER, USE_YN
+        SELECT ACCOUNT_ID, LOGIN_ID, PASSWORD, USER_TYPE, USER_EMAIL, NAME, REGDATE, PHONE_NUMBER, USE_YN, SALT
         FROM MEMBER
-        WHERE LOGIN_ID = #{loginId} AND PASSWORD =#{password}
+        WHERE LOGIN_ID = #{loginId}
     </select>
 
 </mapper>

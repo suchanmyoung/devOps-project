@@ -10,7 +10,7 @@
 <body>
 <div class="register">
 	<h3>회원가입</h3>
-	<form action="">
+	<form action="/members" method="post">
 		<div class="flex">
 			<ul class="container">
 				<li class="item center">

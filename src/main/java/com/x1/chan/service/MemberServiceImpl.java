@@ -18,7 +18,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public void join(Member member) {
-        Member secureMember = Encrypt.encryptPassword(member);
+        Member secureMember = Encrypt.setEncryptPassword(member);
         memberDao.save(secureMember);
     }
 
