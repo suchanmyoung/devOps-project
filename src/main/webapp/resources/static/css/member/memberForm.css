@@ -53,7 +53,7 @@ a {
 .register .flex .container .item:first-child{
     margin-right: 10px;
 }
-.register .flex .container .item .idcheck{
+.register .flex .container .item .idCheck .nicknameCheck{
     height: 100%;
     margin-left: 10px;
     padding: 5px 15px;
@@ -63,7 +63,7 @@ a {
     font-size: 12px;
     transition: 0.3s;
 }
-.register .flex .container .item .idcheck:hover{
+.register .flex .container .item .idCheck .nicknameCheck:hover{
     background: white;
     color: #2b2e4a;
 }

@@ -17,7 +17,7 @@
 					이름
 				</li>
 				<li class="item">
-					<input type="text" name="name" autofocus required>
+					<input type="text" placeholder="이름을 입력하세요." name="name" autofocus required="required">
 				</li>
 				<li class="item">
 
@@ -31,7 +31,7 @@
 					<input type="text" name="loginId" placeholder="아이디를 입력하세요." required="required">
 				</li>
 				<li class="item">
-					<button class="idcheck">중복확인</button>
+					<button class="idCheck">중복확인</button>
 				</li>
 			</ul>
 			<ul class="container">
@@ -47,7 +47,7 @@
 			</ul>
 			<ul class="container">
 				<li class="item center">
-					비밀번호
+					비밀번호확인
 				</li>
 				<li class="item">
 					<input type="passwordCorr" placeholder="비밀번호를 입력하세요." name="passwordCorr" required="required">
@@ -56,7 +56,7 @@
 
 				</li>
 			</ul>
-				<ul class="container">
+			<ul class="container">
 				<li class="item center">
 					전화번호
 				</li>
@@ -76,6 +76,7 @@
 					<input type="String" name="nickName" placeholder="닉네임">
 				</li>
 				<li class="item">
+					<button class="nicknameCheck">중복확인</button>
 				</li>
 			</ul>
 			<ul class="container">

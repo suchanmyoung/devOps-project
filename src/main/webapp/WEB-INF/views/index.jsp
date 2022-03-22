@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>Home</title>
-	<script src="../../resources/js/index.js"></script>
+	<script src="/resources/js/index.js"></script>
 </head>
 <script>
 	<c:if test="${not empty successMsg}">
