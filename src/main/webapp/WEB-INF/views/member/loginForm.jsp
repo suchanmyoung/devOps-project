@@ -6,8 +6,20 @@
 <head>
 	<title>Member</title>
 	<link rel="stylesheet" href="/resources/static/css/member/memberForm.css">
+	<script src="/resources/js/loginForm.js"></script>
 </head>
 <body>
+<script>
+	<c:if test="${not empty loginFailMsg}">
+	let loginFailMsg = "${loginFailMsg}";
+	loginFailById(loginFailMsg);
+	</c:if>
+
+	<c:if test="${not empty passwordFailMsg}">
+	let passwordFailMsg = "${passwordFailMsg}"
+	loginFailByPassword(passwordFailMsg);
+	</c:if>
+</script>
 <div class="register">
 	<h3>로그인</h3>
 	<form action="/login" method="post">

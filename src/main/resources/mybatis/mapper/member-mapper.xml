@@ -16,7 +16,7 @@
     </resultMap>
     
     <insert id="joinMember" parameterType="member">
-        INSERT INTO MEMBER(ACCOUNT_ID, LOGIN_ID, PASSWORD, PASSWORD_CORR, USER_EMAIL, NAME, NICKNAME, PHONE_NUMBER)
+        INSERT INTO MEMBER(ACCOUNT_ID, LOGIN_ID, PASSWORD, PASSWORD_CORR, USER_EMAIL, NAME, NICKNAME, PHONE_NUMBER, SALT)
         VALUES(SEQ_ACCOUNTID.NEXTVAL,
                                   #{loginId},
                                   #{password},
@@ -24,13 +24,15 @@
                                   #{userEmail},
                                   #{name},
                                   #{nickName},
-                                  #{phoneNumber}
+                                  #{phoneNumber},
+                                  #{salt}
         )
     </insert>
     
-    <select id="findMemberById" parameterType="String" resultMap="memberResultMap">
+    <select id="findByLoginId" parameterType="String" resultMap="memberResultMap">
         SELECT ACCOUNT_ID, LOGIN_ID, PASSWORD, PASSWORD_CORR, USER_TYPE, USER_EMAIL, NAME, NICKNAME, REGDATE, PHONE_NUMBER, USE_YN
         FROM MEMBER
-        WHERE LOGIN_ID = #{loginId}
+        WHERE LOGIN_ID = #{loginId} AND PASSWORD =#{password}
     </select>
+
 </mapper>

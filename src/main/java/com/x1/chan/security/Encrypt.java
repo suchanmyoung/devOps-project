@@ -1,7 +1,13 @@
 package com.x1.chan.security;
 
+import com.x1.chan.domain.Member;
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+
+/**
+ * Digest : 해시에 의해 암호화된 데이터
+ */
 
 public class Encrypt {
 
@@ -16,4 +22,31 @@ public class Encrypt {
         }
        return encStringBuilder.toString();
     }
+
+    public static Member encryptPassword(Member member) {
+        String encryptPassword = null;
+        String salt = null;
+        try {
+            salt = Salt.createSalt();
+            encryptPassword = Encrypt.encryptSha256(member.getPassword(), salt);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        member.setSalt(salt);
+        member.setPassword(encryptPassword);
+        return member;
+    }
+
+    public static String encryptPassword(String password, String salt) {
+                try {
+            salt = Salt.createSalt();
+            password = Encrypt.encryptSha256(password, salt);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return password;
+    }
+
+
+
 }

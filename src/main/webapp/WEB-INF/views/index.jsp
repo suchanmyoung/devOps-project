@@ -19,7 +19,7 @@
 	</c:if>
 </script>
 <body>
-<h1>안녕하세요. 이머니입니다.</h1>
+<h1>안녕하세요. 이머니입니다. 반갑습니다 ${loginMember.name} 님.</h1>
 <a href="/members">회원가입</a>
 <a href="/login">로그인</a>
 </body>

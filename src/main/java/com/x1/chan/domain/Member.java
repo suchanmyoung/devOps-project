@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.util.Date;
 
+@ToString
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,6 +20,8 @@ public class Member {
     private Date regDate; // 가입일
     private String phoneNumber; // 휴대폰 번호
     private Character useYN; // 삭제여부
+    private String salt; // 암호화 난수
+
 
     public Member() {
     }

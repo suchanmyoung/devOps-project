@@ -6,5 +6,5 @@ public interface MemberService {
 
     void join(Member member);
 
-    Member findById(String loginId, String password);
+    Member login(String loginId, String password);
 }

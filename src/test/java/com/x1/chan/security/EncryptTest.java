@@ -12,9 +12,10 @@ public class EncryptTest {
     public void encryptTest(){
         try {
             String salt = Salt.createSalt();
+            String salt2 = Salt.createSalt();
             String encryptSha256 = Encrypt.encryptSha256("hello", salt);
-            log.info("salt 값은 = {}", salt);
-            log.info("암호화된 문자열은 = {}", encryptSha256);
+            String encryptSha257 = Encrypt.encryptSha256("hello", salt2);
+            assertEquals(encryptSha256, encryptSha257);
         } catch (Exception e) {
             e.printStackTrace();
         }

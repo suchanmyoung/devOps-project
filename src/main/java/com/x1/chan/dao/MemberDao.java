@@ -5,6 +5,5 @@ import com.x1.chan.domain.Member;
 public interface MemberDao {
 
     void save(Member member);
-
-    Member findById(String loginId, String password);
+    Member findByLoginId(String loginId, String password);
 }

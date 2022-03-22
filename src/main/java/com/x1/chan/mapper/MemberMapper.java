@@ -5,5 +5,5 @@ import org.apache.ibatis.annotations.Param;
 
 public interface MemberMapper {
       void joinMember(Member member);
-      Member findMemberById(@Param("loginId") String id, String password);
+      Member findByLoginId(@Param("loginId") String id, @Param("password") String password);
 }

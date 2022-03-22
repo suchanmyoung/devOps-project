@@ -50,7 +50,7 @@
 					비밀번호확인
 				</li>
 				<li class="item">
-					<input type="passwordCorr" placeholder="비밀번호를 입력하세요." name="passwordCorr" required="required">
+					<input type="text" placeholder="비밀번호를 입력하세요." name="passwordCorr" required="required">
 				</li>
 				<li class="item">
 
@@ -73,7 +73,7 @@
 					닉네임
 				</li>
 				<li class="item">
-					<input type="String" name="nickName" placeholder="닉네임">
+					<input type="text" name="nickName" placeholder="닉네임">
 				</li>
 				<li class="item">
 					<button class="nicknameCheck">중복확인</button>
