@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.x1.chan.mapper.MemberMapper">
     <resultMap id="memberResultMap" type="member">
-        <result column="account_id" property="accountId"/>
         <result column="login_id" property="loginId"/>
         <result column="password" property="password"/>
         <result column="user_Type" property="userType"/>
@@ -16,21 +15,19 @@
     </resultMap>
     
     <insert id="joinMember" parameterType="member">
-        INSERT INTO MEMBER(ACCOUNT_ID, LOGIN_ID, PASSWORD, USER_EMAIL, NAME, PHONE_NUMBER, SALT)
-        VALUES(SEQ_ACCOUNTID.NEXTVAL,
-                                  #{loginId},
-                                  #{password},
-                                  #{userEmail},
-                                  #{name},
-                                  #{phoneNumber},
-                                  #{salt}
-        )
+        INSERT INTO MEMBER(LOGIN_ID, PASSWORD, USER_EMAIL, NAME, PHONE_NUMBER, SALT)
+        VALUES(#{loginId}, #{password}, #{userEmail}, #{name}, #{phoneNumber}, #{salt})
     </insert>
     
     <select id="findByLoginId" parameterType="String" resultMap="memberResultMap">
-        SELECT ACCOUNT_ID, LOGIN_ID, PASSWORD, USER_TYPE, USER_EMAIL, NAME, REGDATE, PHONE_NUMBER, USE_YN, SALT
+        SELECT LOGIN_ID, PASSWORD, USER_TYPE, USER_EMAIL, NAME, REGDATE, PHONE_NUMBER, USE_YN, SALT
         FROM MEMBER
         WHERE LOGIN_ID = #{loginId}
     </select>
+    
+    <insert id="logLogin" parameterType="String">
+        INSERT INTO LOGIN_LOG(LOG_SEQ, LOGIN_ID, DESCRIPTION)
+        VALUES (SEQ_LOG.NEXTVAL, #{loginId}, #{description})
+    </insert>
 
 </mapper>

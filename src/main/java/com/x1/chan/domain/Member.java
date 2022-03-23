@@ -9,8 +9,6 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 public class Member {
-    private Long accountId; // 계정 아이디(Increment, PK)
-
     /** 입력사항 */
     private String loginId; // 로그인 아이디
     private String password; // 로그인 패스워드

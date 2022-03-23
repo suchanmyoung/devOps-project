@@ -7,7 +7,7 @@ function signupSuccess(signUpSuccessMsg, redirectUrl){
 
 // 로그인 성공
 function loginSuccess(loginMemberName){
-    alert("반갑습니다.당당당 " + loginMemberName + " 님!");
+    alert("반갑습니다. " + loginMemberName + " 님!");
 }
 
 // 액세스 거부

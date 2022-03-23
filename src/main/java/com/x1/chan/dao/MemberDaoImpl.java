@@ -26,4 +26,11 @@ public class MemberDaoImpl implements MemberDao{
         return mapper.findByLoginId(loginId, password);
     }
 
+    @Override
+    public void logLogin(String loginId, String description) {
+        MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+        mapper.logLogin(loginId, description);
+    }
+
+
 }

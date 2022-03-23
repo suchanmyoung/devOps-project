@@ -1,5 +1,6 @@
 package com.x1.chan.controller;
 
+import com.x1.chan.domain.LoginDescription;
 import com.x1.chan.domain.Member;
 import com.x1.chan.security.Encrypt;
 import com.x1.chan.service.MemberService;
@@ -15,6 +16,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import static com.x1.chan.domain.LoginDescription.LOGOUT;
 
 
 @Slf4j
@@ -62,7 +65,6 @@ public class MemberController {
         }
 
         model.addAttribute("loginMember", loginMember);
-
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
         return "redirect:/";
@@ -71,6 +73,8 @@ public class MemberController {
     @PostMapping(value = "/logout")
     public String logout(HttpServletRequest request){
         HttpSession session = request.getSession(false);
+        Member loginMember = (Member)session.getAttribute(SessionConst.LOGIN_MEMBER);
+        memberService.logLogin(loginMember.getLoginId(), LOGOUT.getValue());
         if (session != null) {
             session.invalidate();
         }
