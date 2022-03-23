@@ -4,8 +4,10 @@ import com.x1.chan.domain.Member;
 import com.x1.chan.mapper.MemberMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 
 
 @Repository
@@ -15,9 +17,13 @@ public class MemberDaoImpl implements MemberDao{
     private SqlSession sqlSession;
 
     @Override
-    public void save(Member member) {
+    public void save(Member member){
         MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-        mapper.joinMember(member);
+        try {
+            mapper.joinMember(member);
+        }catch (DataIntegrityViolationException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -31,6 +37,4 @@ public class MemberDaoImpl implements MemberDao{
         MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
         mapper.logLogin(loginId, description);
     }
-
-
 }

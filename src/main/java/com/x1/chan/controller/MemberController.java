@@ -52,6 +52,7 @@ public class MemberController {
     public String login(@RequestParam("loginId") String loginId, @RequestParam("password") String password, Model model, HttpServletResponse response,
                         HttpServletRequest request) {
         Member loginMember = memberService.login(loginId, password);
+        log.info(loginMember.toString());
 
         if (loginMember == null) {
             model.addAttribute("loginFailMsg", "아이디가 맞지 않습니다.");
