@@ -9,8 +9,11 @@
 </head>
 <body>
 <h3>게시판</h3>
-<textarea name="ir1" id="ir1" rows="10" cols="100">에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다.</textarea>
 
+<form action="/board" method="post">
+	<textarea name="contents" id="ir1" rows="10" cols="100">에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다.</textarea>
+	<button type="submit">게시글 작성</button>
+</form>
 <script type="text/javascript">
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
