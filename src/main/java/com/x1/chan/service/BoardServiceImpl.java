@@ -1,7 +1,10 @@
 package com.x1.chan.service;
 
 import com.x1.chan.dao.BoardDao;
+import com.x1.chan.domain.Board;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -13,7 +16,13 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public void write(String loginId, String contents) {
-        boardDao.write(loginId, contents);
+    public void write(String loginId, String contents, String title
+    ) {
+        boardDao.write(loginId, contents, title);
+    }
+
+    @Override
+    public List<Board> boardList() {
+        return boardDao.boardList();
     }
 }

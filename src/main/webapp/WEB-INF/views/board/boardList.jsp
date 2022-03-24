@@ -1,27 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-		 pageEncoding="utf-8"%>
+         pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 <head>
-	<title>Member</title>
-	<script type="text/javascript" src="/resources/smartEditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+    <title>BoardList</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.css">
 </head>
 <body>
-<h3>게시판</h3>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>게시글 번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회수</th>
+        </tr>
+        </thead>
+        <tobdy>
+            <c:forEach var="board" items="${boardList}">
+                <td>${board.boardIdx}</td>
+                <td>${board.title}</td>
+                <td>${board.loginId}</td>
+                <td>${board.regDate}</td>
+                <td>${board.hit}</td>
+            </c:forEach>
+        </tobdy>
+    </table>
+<a class="btn btn-primary float-end" href="/boardForm">글쓰기</a>
+    <div class="align-content-center">
+        <ul class="pagination">
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+        </ul>
+    </div>
+</div>
 
-<form action="/board" method="post">
-	<textarea name="contents" id="ir1" rows="10" cols="100">에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다.</textarea>
-	<button type="submit">게시글 작성</button>
-</form>
-<script type="text/javascript">
-	var oEditors = [];
-	nhn.husky.EZCreator.createInIFrame({
-		oAppRef: oEditors,
-		elPlaceHolder: "ir1",
-		sSkinURI: "/resources/smartEditor/SmartEditor2Skin.html",
-		fCreator: "createSEditor2"
-	});
 </script>
 </body>
 </html>

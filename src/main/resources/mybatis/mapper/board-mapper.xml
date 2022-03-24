@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.x1.chan.mapper.BoardMapper">
-    <resultMap id="memberResultMap" type="board">
+    <resultMap id="boardResultMap" type="board">
         <result column="BOARD_IDX" property="boardIdx"/>
         <result column="LOGIN_ID" property="loginId"/>
         <result column="CONTENTS" property="contents"/>
@@ -13,8 +13,13 @@
     </resultMap>
 
     <insert id="write" parameterType="String">
-        INSERT INTO BOARD(BOARD_IDX, LOGIN_ID, CONTENTS)
-        VALUES (SEQ_BOARD.NEXTVAL, #{loginId}, #{contents})
+        INSERT INTO BOARD(BOARD_IDX, LOGIN_ID, CONTENTS, TITLE)
+        VALUES (SEQ_BOARD.NEXTVAL, #{loginId}, #{contents}, #{title})
     </insert>
+
+    <select id="boardList" resultMap="boardResultMap">
+        SELECT BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE
+        FROM BOARD
+    </select>
 
 </mapper>
