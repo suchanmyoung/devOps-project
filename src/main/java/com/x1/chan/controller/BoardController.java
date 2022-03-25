@@ -1,7 +1,9 @@
 package com.x1.chan.controller;
 
 import com.x1.chan.domain.Board;
+import com.x1.chan.domain.Criteria;
 import com.x1.chan.domain.Member;
+import com.x1.chan.domain.PageMakerDTO;
 import com.x1.chan.service.BoardService;
 import com.x1.chan.session.SessionConst;
 import lombok.extern.slf4j.Slf4j;
@@ -22,18 +24,38 @@ public class BoardController {
         this.boardService = boardService;
     }
 
+//    @GetMapping("/board")
+//    public String board(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false)
+//           Member loginMember, Model model) throws NullPointerException {
+//        if (loginMember == null) {
+//            model.addAttribute("accessDenied", "로그인 후 이용해주세요.");
+//            model.addAttribute("redirectUrl", "/");
+//            return "index";
+//        }
+//
+//        List<Board> boardList = boardService.boardList();
+//        model.addAttribute("boardList", boardList);
+//        model.addAttribute("loginMember", loginMember);
+//        return "board/boardList";
+//    }
+
     @GetMapping("/board")
     public String board(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false)
-           Member loginMember, Model model) throws NullPointerException {
+                                Member loginMember, Model model, Criteria criteria) throws NullPointerException {
         if (loginMember == null) {
             model.addAttribute("accessDenied", "로그인 후 이용해주세요.");
             model.addAttribute("redirectUrl", "/");
             return "index";
         }
 
+        int total = boardService.getTotal();
         List<Board> boardList = boardService.boardList();
+        PageMakerDTO pageMaker = new PageMakerDTO(criteria, total);
+        log.info(pageMaker.toString());
+        log.info(String.valueOf(total));
         model.addAttribute("boardList", boardList);
         model.addAttribute("loginMember", loginMember);
+        model.addAttribute("pageMaker", pageMaker);
         return "board/boardList";
     }
 

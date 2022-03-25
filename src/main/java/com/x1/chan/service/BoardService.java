@@ -8,4 +8,5 @@ public interface BoardService {
     void write(String loginId, String contents, String title);
     List<Board> boardList();
     Board boardView(Long boardIdx);
+    int getTotal();
 }

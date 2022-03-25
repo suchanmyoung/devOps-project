@@ -9,4 +9,5 @@ public interface BoardMapper {
     void write(@Param("loginId") String loginId, @Param("contents") String contents, @Param("title") String title);
     List<Board> boardList();
     Board boardView(@Param("boardIdx") Long boardIdx);
+    int getTotal();
 }

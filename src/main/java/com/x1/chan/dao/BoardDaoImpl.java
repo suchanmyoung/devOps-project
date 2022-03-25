@@ -32,4 +32,10 @@ public class BoardDaoImpl implements BoardDao {
         return boardMapper.boardView(boardIdx);
     }
 
+    @Override
+    public int getTotal() {
+        BoardMapper boardMapper = sqlSession.getMapper(BoardMapper.class);
+        return boardMapper.getTotal();
+    }
+
 }

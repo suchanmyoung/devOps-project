@@ -28,5 +28,9 @@
         FROM BOARD
         WHERE BOARD_IDX = #{boardIdx}
     </select>
+    
+    <select id="getTotal" resultType="int">
+        select COUNT(*) FROM BOARD
+    </select>
 
 </mapper>

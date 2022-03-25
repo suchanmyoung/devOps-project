@@ -31,4 +31,10 @@ public class BoardServiceImpl implements BoardService{
         return boardDao.boardView(boardIdx);
     }
 
+    @Override
+    public int getTotal() {
+        return boardDao.getTotal();
+    }
+
+
 }

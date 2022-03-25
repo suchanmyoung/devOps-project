@@ -33,15 +33,23 @@
         </tobdy>
     </table>
 <a class="btn btn-primary float-end" href="/boardForm">글쓰기</a>
-    <div class="align-content-center">
-        <ul class="pagination align-content-center">
-            <li><a class="page-link" href="/board/page/1}">1</a></li>
-            <li><a class="page-link" href="/board/page/2">2</a></li>
-            <li><a class="page-link" href="/board/page/3">3</a></li>
+    <div>
+        <ul class="pagination justify-content-center">
+                <c:if test="${pageMaker.prev ne false}">
+                <li class="page-link">prev</li>
+                </c:if>
+            <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+                <li class="page-link">${num}</li>
+            </c:forEach>
+                <c:if test="${pageMaker.next ne false}">
+                <li class="page-link">next</li>
+                </c:if>
         </ul>
     </div>
 </div>
-
-</script>
+<form method="get">
+    <input type="hidden" name="pageNum" value="${pageMaker.criteria.pageNum}">
+    <input type="hidden" name="amount" value="${pageMaker.criteria.amount}">
+</form>
 </body>
 </html>
