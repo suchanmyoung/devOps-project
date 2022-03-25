@@ -20,6 +20,13 @@
     <select id="boardList" resultMap="boardResultMap">
         SELECT BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE
         FROM BOARD
+        ORDER BY BOARD_IDX DESC
+    </select>
+
+    <select id="boardView" resultMap="boardResultMap">
+        SELECT LOGIN_ID, TITLE, CONTENTS, HIT, REGDATE
+        FROM BOARD
+        WHERE BOARD_IDX = #{boardIdx}
     </select>
 
 </mapper>

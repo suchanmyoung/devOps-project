@@ -25,4 +25,10 @@ public class BoardServiceImpl implements BoardService{
     public List<Board> boardList() {
         return boardDao.boardList();
     }
+
+    @Override
+    public Board boardView(Long boardIdx) {
+        return boardDao.boardView(boardIdx);
+    }
+
 }

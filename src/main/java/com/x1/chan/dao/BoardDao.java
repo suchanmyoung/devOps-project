@@ -7,4 +7,5 @@ import java.util.List;
 public interface BoardDao {
     void write(String loginId, String contents, String title);
     List<Board> boardList();
+    Board boardView(Long boardIdx);
 }

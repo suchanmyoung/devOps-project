@@ -5,6 +5,7 @@
 <head>
 	<title>Home</title>
 	<script type="text/javascript" src="/resources/js/index.js"></script>
+	<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.css">
 </head>
 <script>
 	<c:if test="${not empty successMsg}">
@@ -26,13 +27,14 @@
 </script>
 
 <body>
-<h1>안녕하세요. 이머니입니다. 반갑습니다 ${loginMember.name}.</h1>
-<h2>${accessDenied}</h2>
-<a href="/members">회원가입</a>
-<a href="/login">로그인</a>
-<a href="/board">게시판</a>
-<form action="/logout" method="post">
-	<button type="submit">로그아웃</button>
-</form>
+<div class="container">
+	<h1 class="text-center text-primary">안녕하세요. 이머니입니다. 반갑습니다 ${loginMember.name}.</h1>
+	<div id="button" class="text-center">
+		<button class="btn btn-success" onclick="location.href='/members'">회원가입</button>
+		<button class="btn btn-success" onclick="location.href='/login'">로그인</button>
+		<button class="btn btn-success" onclick="location.href='/board'">게시판</button>
+		<button class="btn btn-success" onclick="location.href='/logout'">로그아웃</button>
+	</div>
+</div>
 </body>
 </html>
