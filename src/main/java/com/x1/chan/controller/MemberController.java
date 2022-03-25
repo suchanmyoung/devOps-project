@@ -24,7 +24,7 @@ import static com.x1.chan.domain.LoginDescription.LOGOUT;
 @Controller
 public class MemberController {
 
-    private MemberService memberService;
+    private final MemberService memberService;
 
     public MemberController(MemberService memberService) {
         this.memberService = memberService;

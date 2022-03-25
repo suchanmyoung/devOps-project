@@ -18,7 +18,7 @@ import java.util.List;
 @Controller
 public class BoardController {
 
-    private BoardService boardService;
+    private final BoardService boardService;
 
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
@@ -51,9 +51,7 @@ public class BoardController {
     @PostMapping("/board")
     public String boardWrite(HttpServletRequest request, @RequestParam("contents") String contents, @RequestParam("title") String title) {
         Member loginMember = (Member) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
-       for(int i=0; i<200; i++) {
-           boardService.write(loginMember.getLoginId(), "dummyData" +i, title+i);
-       }
+        boardService.write(loginMember.getLoginId(), contents, title);
         return "/board/boardList";
     }
 

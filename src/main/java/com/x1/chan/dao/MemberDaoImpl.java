@@ -13,14 +13,16 @@ import java.sql.SQLIntegrityConstraintViolationException;
 @Repository
 public class MemberDaoImpl implements MemberDao{
 
-    @Autowired
-    private SqlSession sqlSession;
+    private MemberMapper memberMapper;
+
+    public MemberDaoImpl(SqlSession sqlSession) {
+        this.memberMapper = sqlSession.getMapper(MemberMapper.class);
+    }
 
     @Override
     public void save(Member member){
-        MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
         try {
-            mapper.joinMember(member);
+            memberMapper.joinMember(member);
         }catch (DataIntegrityViolationException e){
             e.printStackTrace();
         }
@@ -28,13 +30,11 @@ public class MemberDaoImpl implements MemberDao{
 
     @Override
     public Member findByLoginId(String loginId, String password) {
-        MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-        return mapper.findByLoginId(loginId, password);
+        return memberMapper.findByLoginId(loginId, password);
     }
 
     @Override
     public void logLogin(String loginId, String description) {
-        MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-        mapper.logLogin(loginId, description);
+        memberMapper.logLogin(loginId, description);
     }
 }

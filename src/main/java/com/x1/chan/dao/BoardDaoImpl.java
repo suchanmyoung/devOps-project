@@ -11,31 +11,29 @@ import java.util.List;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
+    private BoardMapper boardMapper;
 
-    @Autowired
-    SqlSession sqlSession;
+    BoardDaoImpl(SqlSession sqlSession){
+        this.boardMapper = sqlSession.getMapper(BoardMapper.class);
+    }
 
     @Override
     public void write(String loginId, String contents, String title) {
-        BoardMapper boardMapper = sqlSession.getMapper(BoardMapper.class);
         boardMapper.write(loginId, contents, title);
     }
 
     @Override
     public List<Board> boardList(Criteria criteria) {
-        BoardMapper boardMapper = sqlSession.getMapper(BoardMapper.class);
         return boardMapper.boardList(criteria);
     }
 
     @Override
     public Board boardView(Long boardIdx) {
-        BoardMapper boardMapper = sqlSession.getMapper(BoardMapper.class);
         return boardMapper.boardView(boardIdx);
     }
 
     @Override
     public int getTotal() {
-        BoardMapper boardMapper = sqlSession.getMapper(BoardMapper.class);
         return boardMapper.getTotal();
     }
 
