@@ -1,6 +1,7 @@
 package com.x1.chan.dao;
 
 import com.x1.chan.domain.Board;
+import com.x1.chan.domain.Criteria;
 import com.x1.chan.mapper.BoardMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,9 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
-    public List<Board> boardList() {
+    public List<Board> boardList(Criteria criteria) {
         BoardMapper boardMapper = sqlSession.getMapper(BoardMapper.class);
-        return boardMapper.boardList();
+        return boardMapper.boardList(criteria);
     }
 
     @Override

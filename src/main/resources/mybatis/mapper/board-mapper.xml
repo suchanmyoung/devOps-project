@@ -18,9 +18,14 @@
     </insert>
 
     <select id="boardList" resultMap="boardResultMap">
+        <![CDATA[
         SELECT BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE
-        FROM BOARD
-        ORDER BY BOARD_IDX DESC
+        FROM(SELECT ROWNUM RN, BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE
+            FROM (SELECT ROWNUM RN, BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE
+                FROM BOARD ORDER BY BOARD_IDX DESC)
+                WHERE RN <= #{pageNum} * #{amount})
+        WHERE RN > (#{pageNum}-1) * #{amount}
+        ]]>
     </select>
 
     <select id="boardView" resultMap="boardResultMap">

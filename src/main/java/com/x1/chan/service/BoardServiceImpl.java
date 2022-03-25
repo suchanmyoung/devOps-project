@@ -2,6 +2,7 @@ package com.x1.chan.service;
 
 import com.x1.chan.dao.BoardDao;
 import com.x1.chan.domain.Board;
+import com.x1.chan.domain.Criteria;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,8 +23,8 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public List<Board> boardList() {
-        return boardDao.boardList();
+    public List<Board> boardList(Criteria criteria) {
+        return boardDao.boardList(criteria);
     }
 
     @Override

@@ -24,21 +24,6 @@ public class BoardController {
         this.boardService = boardService;
     }
 
-//    @GetMapping("/board")
-//    public String board(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false)
-//           Member loginMember, Model model) throws NullPointerException {
-//        if (loginMember == null) {
-//            model.addAttribute("accessDenied", "로그인 후 이용해주세요.");
-//            model.addAttribute("redirectUrl", "/");
-//            return "index";
-//        }
-//
-//        List<Board> boardList = boardService.boardList();
-//        model.addAttribute("boardList", boardList);
-//        model.addAttribute("loginMember", loginMember);
-//        return "board/boardList";
-//    }
-
     @GetMapping("/board")
     public String board(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false)
                                 Member loginMember, Model model, Criteria criteria) throws NullPointerException {
@@ -49,10 +34,8 @@ public class BoardController {
         }
 
         int total = boardService.getTotal();
-        List<Board> boardList = boardService.boardList();
+        List<Board> boardList = boardService.boardList(criteria);
         PageMakerDTO pageMaker = new PageMakerDTO(criteria, total);
-        log.info(pageMaker.toString());
-        log.info(String.valueOf(total));
         model.addAttribute("boardList", boardList);
         model.addAttribute("loginMember", loginMember);
         model.addAttribute("pageMaker", pageMaker);
@@ -68,7 +51,9 @@ public class BoardController {
     @PostMapping("/board")
     public String boardWrite(HttpServletRequest request, @RequestParam("contents") String contents, @RequestParam("title") String title) {
         Member loginMember = (Member) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
-        boardService.write(loginMember.getLoginId(), contents, title);
+       for(int i=0; i<200; i++) {
+           boardService.write(loginMember.getLoginId(), "dummyData" +i, title+i);
+       }
         return "/board/boardList";
     }
 
