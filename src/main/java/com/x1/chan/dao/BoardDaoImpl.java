@@ -19,7 +19,7 @@ public class BoardDaoImpl implements BoardDao {
 
     @Override
     public void write(String loginId, String contents, String title) {
-        boardMapper.write(loginId, contents, title);
+            boardMapper.write(loginId, contents, title);
     }
 
     @Override
@@ -35,6 +35,16 @@ public class BoardDaoImpl implements BoardDao {
     @Override
     public int getTotal() {
         return boardMapper.getTotal();
+    }
+
+    @Override
+    public void updateBoard(Long boardIdx) {
+        boardMapper.updateBoard(boardIdx);
+    }
+
+    @Override
+    public void deleteBoard(Long boardIdx) {
+        boardMapper.deleteBoard(boardIdx);
     }
 
 }

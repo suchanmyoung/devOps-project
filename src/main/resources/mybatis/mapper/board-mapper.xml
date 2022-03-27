@@ -7,7 +7,7 @@
         <result column="LOGIN_ID" property="loginId"/>
         <result column="CONTENTS" property="contents"/>
         <result column="HIT" property="hit"/>
-        <result column="USE_YN" property="use_yn"/>
+        <result column="USE_YN" property="useYn"/>
         <result column="TITLE" property="title"/>
         <result column="REGDATE" property="regDate"/>
     </resultMap>
@@ -19,23 +19,35 @@
 
     <select id="boardList" resultMap="boardResultMap">
         <![CDATA[
-        SELECT BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE
-        FROM(SELECT ROWNUM RN, BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE
-            FROM (SELECT ROWNUM RN, BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE
+        SELECT BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE, USE_YN
+        FROM(SELECT ROWNUM RN, BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE, USE_YN
+            FROM (SELECT ROWNUM RN, BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE, USE_YN
                 FROM BOARD ORDER BY BOARD_IDX DESC)
                 WHERE RN <= #{pageNum} * #{amount})
-        WHERE RN > (#{pageNum}-1) * #{amount}
+        WHERE RN > (#{pageNum}-1) * #{amount} AND USE_YN = 'Y'
         ]]>
     </select>
 
     <select id="boardView" resultMap="boardResultMap">
         SELECT LOGIN_ID, TITLE, CONTENTS, HIT, REGDATE
         FROM BOARD
-        WHERE BOARD_IDX = #{boardIdx}
+        WHERE BOARD_IDX = #{boardIdx} AND USE_YN = 'Y'
     </select>
     
     <select id="getTotal" resultType="int">
-        select COUNT(*) FROM BOARD
+        SELECT COUNT(*) FROM BOARD
     </select>
+    
+    <update id="updateBoard" parameterType="long">
+        UPDATE BOARD
+        SET TITLE = #{title}, CONTENTS = #{contents}
+        WHERE BOARD_IDX = #{boardIdx}
+    </update>
+    
+    <update id="deleteBoard" parameterType="long">
+        UPDATE BOARD
+        SET USE_YN = 'N'
+        WHERE BOARD_IDX = #{boardIdx}
+    </update>
 
 </mapper>

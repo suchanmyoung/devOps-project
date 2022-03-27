@@ -12,7 +12,7 @@
 </head>
 <body>
 <h3>게시판</h3>
-	<form action="/board" method="post" id="boardContents">
+	<form action="/boardForm" method="post" id="boardContents">
 		<input type="text" name="title" value="게시글 제목">
 		<input type="textarea" name="contents" id="contents" rows="10" cols="100">
 	<button type="submit" id="saveButton" class="btn-primary">게시글 작성</button>

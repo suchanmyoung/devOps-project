@@ -43,16 +43,15 @@ public class BoardController {
     }
 
     @GetMapping("/boardForm")
-    public String boardForm(){
+    public String boardForm() {
         return "board/boardForm";
     }
 
-
-    @PostMapping("/board")
+    @PostMapping("/boardForm")
     public String boardWrite(HttpServletRequest request, @RequestParam("contents") String contents, @RequestParam("title") String title) {
         Member loginMember = (Member) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
         boardService.write(loginMember.getLoginId(), contents, title);
-        return "/board/boardList";
+        return "redirect:/board";
     }
 
     @GetMapping("/board/{boardIdx}")
@@ -60,6 +59,18 @@ public class BoardController {
         Board boardView = boardService.boardView(boardIdx);
         model.addAttribute("boardView", boardView);
         return "board/boardView";
+    }
+
+    @PostMapping("/board/{boderIdx}")
+    public String boardUpdate(@PathVariable("boardIdx") Long boardIdx) {
+        boardService.updateBoard(boardIdx);
+        return "redirect:/board";
+    }
+
+    @PostMapping("/board/delete/{boardIdx}")
+    public String boardDelete(@PathVariable("boardIdx") Long boardIdx){
+//        boardService.deleteBoard(boardIdx);
+        return "redirect:/board";
     }
 
 }

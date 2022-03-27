@@ -11,4 +11,6 @@ public interface BoardMapper {
     List<Board> boardList(Criteria criteria);
     Board boardView(@Param("boardIdx") Long boardIdx);
     int getTotal();
+    void updateBoard(@Param("boardIdx") Long boardIdx);
+    void deleteBoard(@Param("boardIdx") Long boardIdx);
 }
