@@ -16,5 +16,10 @@
     ${boardView.hit}
     ${boardView.loginId}
     ${boardView.regDate}
+    <form action="/board/delete" method="post">
+        <input type="hidden" name="boardIdx" value="${boardView.boardIdx}">
+        <button class="submit">삭제</button>
+    </form>
+    <a href="/board/update/${boardView.boardIdx}">수정</a>
 </body>
 </html>

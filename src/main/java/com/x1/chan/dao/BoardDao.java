@@ -10,6 +10,6 @@ public interface BoardDao {
     List<Board> boardList(Criteria criteria);
     Board boardView(Long boardIdx);
     int getTotal();
-    void updateBoard(Long boardIdx);
+    void updateBoard(Board board);
     void deleteBoard(Long boardIdx);
 }

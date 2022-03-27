@@ -61,15 +61,21 @@ public class BoardController {
         return "board/boardView";
     }
 
-    @PostMapping("/board/{boderIdx}")
-    public String boardUpdate(@PathVariable("boardIdx") Long boardIdx) {
-        boardService.updateBoard(boardIdx);
+    @GetMapping("/board/update/{boardIdx}")
+    public String boardUpdateForm(@PathVariable("boardIdx") Long boardIdx, Model model){
+        model.addAttribute("boardView", boardService.boardView(boardIdx));
+        return "board/boardUpdateForm";
+    }
+
+    @PostMapping("/board/update")
+    public String boardUpdate(Board board) {
+        boardService.updateBoard(board);
         return "redirect:/board";
     }
 
-    @PostMapping("/board/delete/{boardIdx}")
-    public String boardDelete(@PathVariable("boardIdx") Long boardIdx){
-//        boardService.deleteBoard(boardIdx);
+    @PostMapping("/board/delete")
+    public String boardDelete(@RequestParam("boardIdx") Long boardIdx){
+        boardService.deleteBoard(boardIdx);
         return "redirect:/board";
     }
 

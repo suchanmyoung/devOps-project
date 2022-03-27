@@ -29,7 +29,7 @@
     </select>
 
     <select id="boardView" resultMap="boardResultMap">
-        SELECT LOGIN_ID, TITLE, CONTENTS, HIT, REGDATE
+        SELECT LOGIN_ID, TITLE, CONTENTS, HIT, REGDATE, BOARD_IDX
         FROM BOARD
         WHERE BOARD_IDX = #{boardIdx} AND USE_YN = 'Y'
     </select>
@@ -38,7 +38,7 @@
         SELECT COUNT(*) FROM BOARD
     </select>
     
-    <update id="updateBoard" parameterType="long">
+    <update id="updateBoard" parameterType="board">
         UPDATE BOARD
         SET TITLE = #{title}, CONTENTS = #{contents}
         WHERE BOARD_IDX = #{boardIdx}

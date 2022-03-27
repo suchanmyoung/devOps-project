@@ -38,8 +38,8 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
-    public void updateBoard(Long boardIdx) {
-        boardMapper.updateBoard(boardIdx);
+    public void updateBoard(Board board) {
+        boardMapper.updateBoard(board);
     }
 
     @Override

@@ -11,11 +11,12 @@
 	<style rel="stylesheet" href="/resources/bootstrap/css/bootstrap.css"></style>
 </head>
 <body>
-<h3 class="text-center">게시글 작성</h3>
-	<form action="/boardForm" method="post" id="boardContents">
-		<input type="text" name="title" value="게시글 제목">
-		<input type="textarea" name="contents" id="contents" rows="10" cols="100">
-	<button type="submit" id="saveButton" class="btn-primary">게시글 작성</button>
+<h3 class="text-center">게시글 수정</h3>
+	<form action="/board/update" method="post" id="boardContents">
+		<input type="hidden" name="boardIdx" value="${boardView.boardIdx}">
+		<input type="text" name="title" value="${boardView.title}">
+		<input type="textarea" name="contents" id="contents" rows="10" cols="100" value="${boardView.contents}">
+	<button type="submit" id="saveButton" class="btn-primary">수정</button>
 	</form>
 
 <script type="text/javascript">

@@ -38,8 +38,8 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public void updateBoard(Long boardIdx) {
-        boardDao.updateBoard(boardIdx);
+    public void updateBoard(Board board) {
+        boardDao.updateBoard(board);
     }
 
     @Override
