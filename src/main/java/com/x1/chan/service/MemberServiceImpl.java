@@ -1,14 +1,15 @@
 package com.x1.chan.service;
 
 import com.x1.chan.dao.MemberDao;
-import com.x1.chan.domain.LoginDescription;
 import com.x1.chan.domain.Member;
 import com.x1.chan.security.Encrypt;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import static com.x1.chan.domain.LoginDescription.LOGIN;
-import static com.x1.chan.domain.LoginDescription.LOGOUT;
 
 @Slf4j
 @Service
@@ -27,6 +28,7 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public Member login(String loginId, String password){
         Member loginMember = memberDao.findByLoginId(loginId, password);
         logLogin(loginId, LOGIN.getValue());

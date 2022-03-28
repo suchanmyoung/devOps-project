@@ -19,7 +19,6 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
-    @Transactional
     public void write(String loginId, String contents, String title) {
                boardMapper.write(loginId, contents, title);
     }
@@ -40,7 +39,6 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
-    @Transactional
     public void updateBoard(Board board) {
         boardMapper.updateBoard(board);
     }
