@@ -17,8 +17,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Member loginMember = (Member)request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
-        if(loginMember == null){
+        log.info(String.valueOf(request.getSession().getAttribute(SessionConst.LOGIN_MEMBER)));
+        Object loginSession = request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
+        if(loginSession == null){
             log.error("로그인 하지 않은 사용자가 접근하였습니다.");
             request.setAttribute("accessDenied", "로그인 후 이용해주세요.");
             ModelAndView mv = new ModelAndView();

@@ -4,7 +4,6 @@ import com.x1.chan.dao.MemberDao;
 import com.x1.chan.domain.Member;
 import com.x1.chan.security.Encrypt;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,9 +21,11 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public void join(Member member) {
+    public Member join(Member member) {
         Member secureMember = Encrypt.setEncryptPassword(member);
-        memberDao.save(secureMember);
+        memberDao.join(secureMember);
+        Member login = login(member.getLoginId(), secureMember.getPassword());
+        return login;
     }
 
     @Override

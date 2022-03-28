@@ -20,7 +20,7 @@ public class MemberDaoImpl implements MemberDao{
     }
 
     @Override
-    public void save(Member member){
+    public void join(Member member){
         try {
             memberMapper.joinMember(member);
         }catch (DataIntegrityViolationException e){

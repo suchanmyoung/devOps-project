@@ -28,7 +28,14 @@
 
 <body>
 <div class="container">
-	<h1 class="text-center text-primary">안녕하세요. 이머니입니다. 반갑습니다 ${loginMember.name}.</h1>
+	<h1 class="text-center text-primary">안녕하세요. 이머니입니다. 반갑습니다.
+		<c:choose>
+		<c:when test="${sessionId != null}">
+			<h2>네이버 로그인 성공</h2>
+			<h3>'${sessionId} 님 환영합니다.</h3>
+		</c:when>
+		</c:choose>
+		${loginMember.name}.</h1>
 	<div id="button" class="text-center">
 		<button class="btn btn-success" onclick="location.href='/members'">회원가입</button>
 		<button class="btn btn-success" onclick="location.href='/login'">로그인</button>
