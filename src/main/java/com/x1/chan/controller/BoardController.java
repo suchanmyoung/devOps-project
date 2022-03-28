@@ -25,20 +25,14 @@ public class BoardController {
     }
 
     @GetMapping("/board")
-    public String board(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false)
-                                Member loginMember, Model model, Criteria criteria) throws NullPointerException {
-        if (loginMember == null) {
-            model.addAttribute("accessDenied", "로그인 후 이용해주세요.");
-            model.addAttribute("redirectUrl", "/");
-            return "index";
-        }
-
+    public String board(Member loginMember, Model model, Criteria criteria) throws NullPointerException {
         int total = boardService.getTotal();
         List<Board> boardList = boardService.boardList(criteria);
         PageMakerDTO pageMaker = new PageMakerDTO(criteria, total);
+
+        model.addAttribute("pageMaker", pageMaker);
         model.addAttribute("boardList", boardList);
         model.addAttribute("loginMember", loginMember);
-        model.addAttribute("pageMaker", pageMaker);
         return "board/boardList";
     }
 

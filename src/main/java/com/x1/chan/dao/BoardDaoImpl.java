@@ -6,6 +6,7 @@ import com.x1.chan.mapper.BoardMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,8 +19,9 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
+    @Transactional
     public void write(String loginId, String contents, String title) {
-            boardMapper.write(loginId, contents, title);
+               boardMapper.write(loginId, contents, title);
     }
 
     @Override
@@ -38,6 +40,7 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
+    @Transactional
     public void updateBoard(Board board) {
         boardMapper.updateBoard(board);
     }

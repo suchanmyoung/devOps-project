@@ -19,6 +19,20 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<exclude-mapping path="/"/>
+			<exclude-mapping path="/login"/>
+			<exclude-mapping path="/members"/>
+			<beans:bean id="commonInterceptor" class="com.x1.chan.interceptor.LoginInterceptor"/>
+		</interceptor>
+	</interceptors>
+
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0"/>
+	</beans:bean>
+
 	<!-- 컴포넌트 스캔 위치 지정 -->
 	<context:component-scan base-package="com.x1.chan" />
 	

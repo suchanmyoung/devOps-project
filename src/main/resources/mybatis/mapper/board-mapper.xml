@@ -19,12 +19,11 @@
 
     <select id="boardList" resultMap="boardResultMap">
         <![CDATA[
-        SELECT BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE, USE_YN
+        SELECT *
         FROM(SELECT ROWNUM RN, BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE, USE_YN
-            FROM (SELECT ROWNUM RN, BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE, USE_YN
-                FROM BOARD ORDER BY BOARD_IDX DESC)
-                WHERE RN <= #{pageNum} * #{amount})
-        WHERE RN > (#{pageNum}-1) * #{amount} AND USE_YN = 'Y'
+             FROM (SELECT ROWNUM RN, BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE, USE_YN
+                   FROM BOARD ORDER BY BOARD_IDX DESC))
+        WHERE RN BETWEEN (#{pageNum} - 1) * #{amount} AND #{pageNum} * #{amount} AND USE_YN = 'Y'
         ]]>
     </select>
 

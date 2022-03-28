@@ -20,6 +20,7 @@
 	loginFailByPassword(passwordFailMsg);
 	</c:if>
 </script>
+
 <div class="register">
 	<h3>로그인</h3>
 	<form action="/login" method="post">
