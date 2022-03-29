@@ -6,6 +6,7 @@ import com.x1.chan.domain.Member;
 import com.x1.chan.domain.PageMakerDTO;
 import com.x1.chan.service.BoardService;
 import com.x1.chan.session.SessionConst;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Slf4j
+@AllArgsConstructor
 @Controller
 public class BoardController {
 
     private final BoardService boardService;
-
-    public BoardController(BoardService boardService) {
-        this.boardService = boardService;
-    }
 
     @GetMapping("/board")
     public String board(Member loginMember, Model model, Criteria criteria) throws NullPointerException {

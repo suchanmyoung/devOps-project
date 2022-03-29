@@ -7,6 +7,7 @@ import com.x1.chan.domain.Member;
 import com.x1.chan.security.Encrypt;
 import com.x1.chan.service.MemberService;
 import com.x1.chan.session.SessionConst;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -28,6 +29,7 @@ import static com.x1.chan.domain.LoginDescription.LOGOUT;
 
 
 @Slf4j
+@AllArgsConstructor
 @Controller
 public class MemberController {
 
@@ -38,10 +40,6 @@ public class MemberController {
     @Autowired
     private void setNaverLogin(NaverLogin naverLogin) {
         this.naverLogin = naverLogin;
-    }
-
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
     }
 
     @GetMapping(value = "/members")

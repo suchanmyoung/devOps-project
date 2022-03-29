@@ -3,6 +3,7 @@ package com.x1.chan.service;
 import com.x1.chan.dao.BoardDao;
 import com.x1.chan.domain.Board;
 import com.x1.chan.domain.Criteria;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,14 +16,11 @@ import java.util.List;
  * readOnly 속성으로 dirty checking 생략 > 성능 향상 및 조회 메소드 명시
  */
 
+@AllArgsConstructor
 @Service
 public class BoardServiceImpl implements BoardService{
 
-    private BoardDao boardDao;
-
-    public BoardServiceImpl(BoardDao boardDao) {
-        this.boardDao = boardDao;
-    }
+    private final BoardDao boardDao;
 
     @Override
     @Transactional(isolation = Isolation.REPEATABLE_READ)
