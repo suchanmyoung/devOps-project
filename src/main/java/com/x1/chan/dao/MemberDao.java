@@ -1,12 +1,16 @@
 package com.x1.chan.dao;
 
 import com.x1.chan.domain.Member;
+import com.x1.chan.domain.NaverLoginDTO;
 import com.x1.chan.mapper.MemberMapper;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.jdbc.Null;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
 
+@Slf4j
 @Repository
 public class MemberDao{
 
@@ -24,8 +28,28 @@ public class MemberDao{
         }
     }
 
+    public NaverLoginDTO findByNaverId(NaverLoginDTO naverMember) {
+        try {
+            return memberMapper.findByNaverId(naverMember);
+        }catch (NullPointerException e){
+            log.error("네이버 로그인 에러");
+            log.error(String.valueOf(e));
+            return null;
+        }
+    }
+
+    public void saveNaverMember(NaverLoginDTO naverMember) {
+        memberMapper.saveNaverId(naverMember);
+    }
+
     public Member findByLoginId(String loginId, String password) {
-        return memberMapper.findByLoginId(loginId, password);
+        try{
+            return memberMapper.findByLoginId(loginId, password);
+        } catch (NullPointerException e){
+            log.error("로그인 아이디 없음");
+            log.error(String.valueOf(e));
+            return null;
+        }
     }
 
     public void logLogin(String loginId, String description) {

@@ -5,6 +5,7 @@ import com.x1.chan.common.naver.NaverLogin;
 import com.x1.chan.common.security.Encrypt;
 import com.x1.chan.common.session.SessionConst;
 import com.x1.chan.domain.Member;
+import com.x1.chan.domain.NaverLoginDTO;
 import com.x1.chan.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,13 +33,7 @@ import static com.x1.chan.domain.LoginDescription.LOGOUT;
 public class MemberController {
 
     private final MemberService memberService;
-    private NaverLogin naverLogin;
-    private String apiResult=null;
-
-    @Autowired
-    private void setNaverLogin(NaverLogin naverLogin) {
-        this.naverLogin = naverLogin;
-    }
+    private final NaverLogin naverLogin;
 
     @GetMapping(value = "/members")
     public String memberForm() {
@@ -69,26 +64,28 @@ public class MemberController {
 
     @GetMapping(value = "/login/oauth2/naver")
     public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session, HttpServletRequest request) throws IOException, ParseException {
-        log.info("callback 시작");
+        log.info("네이버 로그인 시작");
         OAuth2AccessToken oauthToken;
         oauthToken = naverLogin.getAccessToken(session, code, state);
-        apiResult = naverLogin.getUserProfile(oauthToken);
+        String apiResult = naverLogin.getUserProfile(oauthToken);
 
         JSONParser parser = new JSONParser();
         Object parsingApiResult = parser.parse(apiResult);
         JSONObject jsonObj = (JSONObject) parsingApiResult;
 
         JSONObject response_obj = (JSONObject) jsonObj.get("response");
-        String nickname = (String) response_obj.get("nickname");
+        NaverLoginDTO naverMember = new NaverLoginDTO();
+        naverMember.setName((String) response_obj.get("name"));
+        naverMember.setEmail((String) response_obj.get("email"));
+        naverMember.setProfileImage((String) response_obj.get("profile_image"));
 
-        log.info("세션에 저장할 닉네임 = {}", nickname);
+        NaverLoginDTO naverLoginMember = memberService.loginByNaver(naverMember);
 
         HttpSession httpSession = request.getSession();
-        httpSession.setAttribute(SessionConst.LOGIN_MEMBER, nickname);
-        model.addAttribute("result", apiResult);
-        model.addAttribute("sessionId", nickname);
+        httpSession.setAttribute(SessionConst.LOGIN_MEMBER, naverLoginMember.getName());
+        model.addAttribute("naverLoginMember", naverLoginMember);
 
-        return "redirect:/";
+        return "index";
     }
 
     @PostMapping(value = "/login")
@@ -107,10 +104,10 @@ public class MemberController {
             return "member/loginForm";
         }
 
-        model.addAttribute("loginMember", loginMember);
+        model.addAttribute("justLoginMember", loginMember);
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
-        return "redirect:/";
+        return "index";
     }
 
     @GetMapping(value = "/logout")

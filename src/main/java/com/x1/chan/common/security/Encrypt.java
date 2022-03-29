@@ -1,6 +1,7 @@
 package com.x1.chan.common.security;
 
 import com.x1.chan.domain.Member;
+import lombok.extern.slf4j.Slf4j;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -9,6 +10,7 @@ import java.security.MessageDigest;
  * Digest : 해시에 의해 암호화된 데이터
  */
 
+@Slf4j
 public class Encrypt {
 
     public static String encryptSha256(String str, String salt) throws  Exception{
@@ -30,7 +32,8 @@ public class Encrypt {
             salt = Salt.createSalt();
             encryptPassword = Encrypt.encryptSha256(member.getPassword(), salt);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("암호화 에러");
+            log.error(String.valueOf(e));
         }
         member.setSalt(salt);
         member.setPassword(encryptPassword);
@@ -41,7 +44,8 @@ public class Encrypt {
                 try {
             password = Encrypt.encryptSha256(password, salt);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("비밀번화 암호화 에러");
+            log.error(String.valueOf(e));
         }
         return password;
     }

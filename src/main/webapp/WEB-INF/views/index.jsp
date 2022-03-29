@@ -9,18 +9,18 @@
 </head>
 <script>
 	<c:if test="${not empty successMsg}">
-		let signupSuccessMsg="${successMsg}"
-		const redirectUrl="${redirectUrl}"
+		let signupSuccessMsg="${successMsg}";
+		const redirectUrl="${redirectUrl}";
 		signupSuccess(signupSuccessMsg, redirectUrl);
 	</c:if>
 
-	<c:if test="${not empty loginMember}">
-		let loginMemberName="${loginMember.name}";
+	<c:if test="${not empty justLoginMember}">
+		let loginMemberName = "${justLoginMember.name}";
 		loginSuccess(loginMemberName);
 	</c:if>
 
 	<c:if test="${not empty accessDenied}">
-		let accessDeniedMsg = "${accessDenied}";
+		let accessDeniedMsg = "${accessDdenied}";
 		let redirectUrl = "${redirectUrl}";
 		accessDeniedAlert(accessDeniedMsg, redirectUrl);
 	</c:if>
@@ -28,20 +28,25 @@
 
 <body>
 <div class="container">
-	<h1 class="text-center text-primary">안녕하세요. 이머니입니다. 반갑습니다.
-		<c:choose>
-		<c:when test="${sessionId != null}">
+	<div class="text-center text-primary">
+	<c:choose>
+		<c:when test="${naverLoginMember != null}">
 			<h2>네이버 로그인 성공</h2>
-			<h3>'${sessionId} 님 환영합니다.</h3>
+			<h3>${naverLoginMember.name} 님 환영합니다.</h3>
 		</c:when>
-		</c:choose>
-		${loginMember.name}.</h1>
+		<c:otherwise>
+			<h2>안녕하세요. 이머니입니다. 반갑습니다. ${justLoginMember.name}</h2>
+		</c:otherwise>
+	</c:choose>
+	</div>
 	<div id="button" class="text-center">
 		<button class="btn btn-success" onclick="location.href='/members'">회원가입</button>
 		<button class="btn btn-success" onclick="location.href='/login'">로그인</button>
 		<button class="btn btn-success" onclick="location.href='/board'">게시판</button>
 		<button class="btn btn-success" onclick="location.href='/logout'">로그아웃</button>
 	</div>
+</div>
+<div class="text-center text-primary">
 </div>
 </body>
 </html>

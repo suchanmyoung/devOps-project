@@ -6,5 +6,6 @@
     <typeAliases>
         <typeAlias type="com.x1.chan.domain.Member" alias="member"/>
         <typeAlias type="com.x1.chan.domain.Board" alias="board"/>
+        <typeAlias type="com.x1.chan.domain.NaverLoginDTO" alias="naver"/>
     </typeAliases>
 </configuration>

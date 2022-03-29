@@ -3,12 +3,15 @@ package com.x1.chan.service;
 import com.x1.chan.dao.MemberDao;
 import com.x1.chan.domain.Member;
 import com.x1.chan.common.security.Encrypt;
+import com.x1.chan.domain.NaverLoginDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import static com.x1.chan.domain.LoginDescription.LOGIN;
+import static com.x1.chan.domain.LoginDescription.NAVER_LOGIN;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -31,7 +34,25 @@ public class MemberService{
         return loginMember;
     }
 
+    @Transactional
+    public NaverLoginDTO loginByNaver(NaverLoginDTO naverMember){
+        NaverLoginDTO loginMember = memberDao.findByNaverId(naverMember);
+        log.error(String.valueOf(ObjectUtils.isEmpty(loginMember)));
+
+        if(ObjectUtils.isEmpty(loginMember)){
+            memberDao.saveNaverMember(naverMember);
+            logLogin(naverMember.getEmail(), NAVER_LOGIN.getValue());
+            return naverMember;
+        }else{
+            logLogin(loginMember.getEmail(), NAVER_LOGIN.getValue());
+        }
+
+        return loginMember;
+    }
+
     public void logLogin(String loginId, String description) {
         memberDao.logLogin(loginId, description);
     }
+
+
 }

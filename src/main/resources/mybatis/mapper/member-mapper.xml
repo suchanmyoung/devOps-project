@@ -13,6 +13,23 @@
         <result column="phone_number" property="phoneNumber" />
         <result column="use_YN" property="useYN"/>
     </resultMap>
+    <resultMap id="naverResultMap" type="naver">
+        <result column="login_email" property="email"/>
+        <result column="profile_image" property="profileImage"/>
+        <result column="login_idx" property="loginIdx"/>
+        <result column="name" property="name"/>
+    </resultMap>
+    
+    <insert id="saveNaverId" parameterType="naver">
+        INSERT INTO NAVER_LOGIN(LOGIN_IDX, LOGIN_EMAIL, PROFILE_IMAGE, NAME)
+        VALUES (SEQ_NAVER_LOGIN.NEXTVAL, #{email}, #{profileImage}, #{name})
+    </insert>
+    
+    <select id="findByNaverId" parameterType="naver" resultMap="naverResultMap">
+        SELECT LOGIN_EMAIL, PROFILE_IMAGE, LOGIN_IDX, NAME
+        FROM NAVER_LOGIN
+        WHERE LOGIN_EMAIL = #{email}
+    </select>
     
     <insert id="joinMember" parameterType="member">
         INSERT INTO MEMBER(LOGIN_ID, PASSWORD, USER_EMAIL, NAME, PHONE_NUMBER, SALT)
