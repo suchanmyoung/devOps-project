@@ -2,10 +2,10 @@ package com.x1.chan.controller;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.x1.chan.common.naver.NaverLogin;
-import com.x1.chan.domain.Member;
 import com.x1.chan.common.security.Encrypt;
-import com.x1.chan.service.MemberService;
 import com.x1.chan.common.session.SessionConst;
+import com.x1.chan.domain.Member;
+import com.x1.chan.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
@@ -14,13 +14,13 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import java.io.IOException;
 
 import static com.x1.chan.domain.LoginDescription.LOGOUT;
@@ -96,7 +96,7 @@ public class MemberController {
         Member loginMember = memberService.login(loginId, password);
         log.info(loginMember.toString());
 
-        if (loginMember == null) {
+        if (ObjectUtils.isEmpty(loginMember)) {
             model.addAttribute("loginFailMsg", "아이디가 맞지 않습니다.");
             return "member/loginForm";
         }
@@ -118,7 +118,7 @@ public class MemberController {
         HttpSession session = request.getSession(false);
         Member loginMember = (Member)session.getAttribute(SessionConst.LOGIN_MEMBER);
         memberService.logLogin(loginMember.getLoginId(), LOGOUT.getValue());
-        if (session != null) {
+        if (!ObjectUtils.isEmpty(session)) {
             session.invalidate();
         }
         return "redirect:/";
