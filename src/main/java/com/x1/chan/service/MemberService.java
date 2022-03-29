@@ -4,6 +4,7 @@ import com.x1.chan.dao.MemberDao;
 import com.x1.chan.domain.Member;
 import com.x1.chan.security.Encrypt;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -12,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static com.x1.chan.domain.LoginDescription.LOGIN;
 
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class MemberService{
 
@@ -25,7 +26,7 @@ public class MemberService{
         return login;
     }
 
-    @Transactional(isolation = Isolation.REPEATABLE_READ)
+    @Transactional
     public Member login(String loginId, String password){
         Member loginMember = memberDao.findByLoginId(loginId, password);
         logLogin(loginId, LOGIN.getValue());

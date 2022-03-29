@@ -8,6 +8,7 @@ import com.x1.chan.security.Encrypt;
 import com.x1.chan.service.MemberService;
 import com.x1.chan.session.SessionConst;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -29,7 +30,7 @@ import static com.x1.chan.domain.LoginDescription.LOGOUT;
 
 
 @Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Controller
 public class MemberController {
 
