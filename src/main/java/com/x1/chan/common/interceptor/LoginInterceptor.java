@@ -1,16 +1,12 @@
-package com.x1.chan.interceptor;
+package com.x1.chan.common.interceptor;
 
-import com.x1.chan.domain.Member;
-import com.x1.chan.session.SessionConst;
+import com.x1.chan.common.session.SessionConst;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.Enumeration;
 
 @Slf4j
 public class LoginInterceptor extends HandlerInterceptorAdapter{

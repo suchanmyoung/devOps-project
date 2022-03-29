@@ -1,4 +1,4 @@
-package com.x1.chan.security;
+package com.x1.chan.common.security;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;

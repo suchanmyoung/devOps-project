@@ -1,13 +1,11 @@
 package com.x1.chan.controller;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import com.x1.chan.common.NaverLogin;
+import com.x1.chan.common.naver.NaverLogin;
 import com.x1.chan.domain.Member;
-import com.x1.chan.security.Encrypt;
+import com.x1.chan.common.security.Encrypt;
 import com.x1.chan.service.MemberService;
-import com.x1.chan.session.SessionConst;
-import lombok.AllArgsConstructor;
+import com.x1.chan.common.session.SessionConst;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 

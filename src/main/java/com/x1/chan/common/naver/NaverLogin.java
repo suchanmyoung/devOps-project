@@ -1,4 +1,4 @@
-package com.x1.chan.common;
+package com.x1.chan.common.naver;
 
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth2AccessToken;

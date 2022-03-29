@@ -27,7 +27,7 @@
 			<exclude-mapping path="/members"/>
 			<exclude-mapping path="/common"/>
 			<exclude-mapping path="/login/oauth2/naver"/>
-			<beans:bean id="commonInterceptor" class="com.x1.chan.interceptor.LoginInterceptor"/>
+			<beans:bean id="commonInterceptor" class="com.x1.chan.common.interceptor.LoginInterceptor"/>
 		</interceptor>
 	</interceptors>
 
@@ -39,6 +39,6 @@
 	<context:component-scan base-package="com.x1.chan" />
 	
 	<!-- 네이버 로그인 -->
-	<beans:bean id="naverLogin" class="com.x1.chan.common.NaverLogin"/>
+	<beans:bean id="naverLogin" class="com.x1.chan.common.naver.NaverLogin"/>
 	
 </beans:beans>

@@ -2,12 +2,10 @@ package com.x1.chan.service;
 
 import com.x1.chan.dao.MemberDao;
 import com.x1.chan.domain.Member;
-import com.x1.chan.security.Encrypt;
-import lombok.AllArgsConstructor;
+import com.x1.chan.common.security.Encrypt;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import static com.x1.chan.domain.LoginDescription.LOGIN;

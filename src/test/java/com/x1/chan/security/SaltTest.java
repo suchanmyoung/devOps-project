@@ -1,10 +1,8 @@
 package com.x1.chan.security;
 
+import com.x1.chan.common.security.Salt;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 @Slf4j
 public class SaltTest {

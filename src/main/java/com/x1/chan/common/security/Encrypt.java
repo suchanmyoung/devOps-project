@@ -1,4 +1,4 @@
-package com.x1.chan.security;
+package com.x1.chan.common.security;
 
 import com.x1.chan.domain.Member;
 
