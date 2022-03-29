@@ -18,7 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringRunner.class)
 @WebAppConfiguration
 @ContextConfiguration("file:src/main/resources/applicationContext.xml")
-public class MemberServiceImplTest {
+public class MemberServiceTest {
     @Setter(onMethod_ = @Autowired)
     private WebApplicationContext wac;
 

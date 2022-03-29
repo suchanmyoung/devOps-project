@@ -2,22 +2,42 @@ package com.x1.chan.dao;
 
 import com.x1.chan.domain.Board;
 import com.x1.chan.domain.Criteria;
-import org.springframework.transaction.annotation.Transactional;
+import com.x1.chan.mapper.BoardMapper;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface BoardDao {
-    void write(String loginId, String contents, String title);
+@Repository
+public class BoardDao{
+    private BoardMapper boardMapper;
 
-    void updateBoard(Board board);
+    BoardDao(SqlSession sqlSession){
+        this.boardMapper = sqlSession.getMapper(BoardMapper.class);
+    }
 
-    void deleteBoard(Long boardIdx);
+    public void write(String loginId, String contents, String title) {
+               boardMapper.write(loginId, contents, title);
+    }
 
-    List<Board> boardList(Criteria criteria);
+    public List<Board> boardList(Criteria criteria) {
+        return boardMapper.boardList(criteria);
+    }
 
-    Board boardView(Long boardIdx);
+    public Board boardView(Long boardIdx) {
+        return boardMapper.boardView(boardIdx);
+    }
 
-    int getTotal();
+    public int getTotal() {
+        return boardMapper.getTotal();
+    }
 
+    public void updateBoard(Board board) {
+        boardMapper.updateBoard(board);
+    }
+
+    public void deleteBoard(Long boardIdx) {
+        boardMapper.deleteBoard(boardIdx);
+    }
 
 }
