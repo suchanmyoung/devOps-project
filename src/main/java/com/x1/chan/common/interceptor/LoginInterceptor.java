@@ -1,7 +1,10 @@
 package com.x1.chan.common.interceptor;
 
 import com.x1.chan.common.session.SessionConst;
+import com.x1.chan.domain.Member;
+import com.x1.chan.domain.NaverLoginDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -13,12 +16,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info(String.valueOf(request.getSession().getAttribute(SessionConst.LOGIN_MEMBER)));
-        Object loginSession = request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
-        if(loginSession == null){
+
+        Member loginSession = (Member)request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
+        String naverLoginSession = (String)request.getSession().getAttribute(SessionConst.NAVER_LOGIN_MEMBER);
+
+        if(ObjectUtils.isEmpty(loginSession) && ObjectUtils.isEmpty(naverLoginSession)){
             log.error("로그인 하지 않은 사용자가 접근하였습니다.");
             request.setAttribute("accessDenied", "로그인 후 이용해주세요.");
-            ModelAndView mv = new ModelAndView();
             response.sendRedirect("/login");
             return false;
         }

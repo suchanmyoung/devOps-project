@@ -6,20 +6,45 @@
 <html>
 <head>
     <title>Board View</title>
-    <script type="text/javascript" src="/resources/smartEditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <style rel="stylesheet" href="/resources/bootstrap/css/bootstrap.css"></style>
+    <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.css">
 </head>
 <body>
-    ${boardView.title}
-    ${boardView.contents}
-    ${boardView.hit}
-    ${boardView.loginId}
-    ${boardView.regDate}
-    <form action="/board/delete" method="post">
-        <input type="hidden" name="boardIdx" value="${boardView.boardIdx}">
-        <button class="submit">삭제</button>
-    </form>
-    <a href="/board/update/${boardView.boardIdx}">수정</a>
+<div class="container">
+    <div class="text-center text-primary">
+    <h2>제목 : ${boardView.title}</h2>
+    <h3>내용 ${boardView.contents}</h3>
+    <h3>조회수 : ${boardView.hit}</h3>
+    <h3>작성자 : ${boardView.loginId}</h3>
+    <h3>작성일자 : ${boardView.regDate}</h3>
+
+    <c:choose>
+        <c:when test="${not empty loginMember}">
+        <div id="button" class="text-center">
+            <form action="/board/update/${boardView.boardIdx}" method="get">
+                <input type="hidden" name="loginId" value="${loginMember.loginId}">
+                <button type="submit" class="btn btn-success">수정</button>
+            </form>
+            <form action="/board/delete" method="post">
+                <input type="hidden" name="boardIdx" value="${boardView.boardIdx}">
+                <button type="submit" class="btn btn-danger">삭제</button>
+            </form>
+        </div>
+        </c:when>
+        <c:when test="${not empty naverMember}">
+            <div id="button" class="text-center">
+                <form action="/board/update/${boardView.boardIdx}" method="get">
+                    <input type="hidden" name="loginId" value="${naverMember}">
+                    <button type="submit" class="btn btn-success">수정</button>
+                </form>
+                <form action="/board/delete" method="post">
+                    <input type="hidden" name="boardIdx" value="${boardView.boardIdx}">
+                    <button type="submit" class="btn btn-danger">삭제</button>
+                </form>
+            </div>
+        </c:when>
+    </c:choose>
+    </div>
+</div>
 </body>
 </html>

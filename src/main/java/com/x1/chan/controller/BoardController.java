@@ -6,13 +6,16 @@ import com.x1.chan.domain.Member;
 import com.x1.chan.domain.PageMakerDTO;
 import com.x1.chan.service.BoardService;
 import com.x1.chan.common.session.SessionConst;
+import com.x1.chan.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Slf4j
@@ -21,16 +24,16 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+    private final MemberService memberService;
 
     @GetMapping("/board")
-    public String board(Member loginMember, Model model, Criteria criteria) throws NullPointerException {
+    public String board(Model model, Criteria criteria, HttpServletRequest request) throws NullPointerException {
         int total = boardService.getTotal();
         List<Board> boardList = boardService.boardList(criteria);
         PageMakerDTO pageMaker = new PageMakerDTO(criteria, total);
 
         model.addAttribute("pageMaker", pageMaker);
         model.addAttribute("boardList", boardList);
-        model.addAttribute("loginMember", loginMember);
         return "board/boardList";
     }
 
@@ -42,13 +45,30 @@ public class BoardController {
     @PostMapping("/boardForm")
     public String boardWrite(HttpServletRequest request, @RequestParam("contents") String contents, @RequestParam("title") String title) {
         Member loginMember = (Member) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
+        String naverLoginMember = (String)request.getSession().getAttribute(SessionConst.NAVER_LOGIN_MEMBER);
+        if(ObjectUtils.isEmpty(loginMember)){
+            boardService.write(naverLoginMember, contents, title);
+            return "redirect:/board";
+        }
         boardService.write(loginMember.getLoginId(), contents, title);
         return "redirect:/board";
     }
 
     @GetMapping("/board/{boardIdx}")
-    public String boardView(@PathVariable("boardIdx") Long boardIdx, Model model) {
+    public String boardView(@PathVariable("boardIdx") Long boardIdx, Model model, HttpServletRequest request) {
         Board boardView = boardService.boardView(boardIdx);
+
+        HttpSession session = request.getSession(false);
+
+        Member loginSession = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
+        if(ObjectUtils.isEmpty(loginSession)){
+            String naverSessionId = (String) session.getAttribute(SessionConst.NAVER_LOGIN_MEMBER);
+            if(naverSessionId.equals(boardView.getLoginId()))
+            model.addAttribute("naverMember", naverSessionId);
+        }else{
+            if(loginSession.getLoginId().equals(boardView.getLoginId()) || loginSession.getUserType().equals("ADMIN"))
+            model.addAttribute("loginMember", loginSession);
+        }
         model.addAttribute("boardView", boardView);
         return "board/boardView";
     }

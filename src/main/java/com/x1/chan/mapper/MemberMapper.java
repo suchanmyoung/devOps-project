@@ -10,4 +10,5 @@ public interface MemberMapper {
       void logLogin(@Param("loginId") String id, @Param("description") String description);
       NaverLoginDTO findByNaverId(NaverLoginDTO naverMember);
       void saveNaverId(NaverLoginDTO naverMember);
+      String findNaverId(@Param("naverId") String naverId);
 }

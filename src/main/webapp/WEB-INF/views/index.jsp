@@ -33,6 +33,7 @@
 		<c:when test="${naverLoginMember != null}">
 			<h2>네이버 로그인 성공</h2>
 			<h3>${naverLoginMember.name} 님 환영합니다.</h3>
+			<img width="150px" height="150px" src="${naverLoginMember.profileImage}">
 		</c:when>
 		<c:otherwise>
 			<h2>안녕하세요. 이머니입니다. 반갑습니다. ${justLoginMember.name}</h2>

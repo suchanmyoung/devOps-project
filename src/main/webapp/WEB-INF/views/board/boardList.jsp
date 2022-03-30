@@ -28,7 +28,7 @@
         </thead>
         <tobdy>
             <c:forEach var="board" items="${boardList}">
-            <tr>
+                <tr>
                 <td>${board.boardIdx}</td>
                 <td><a href="/board/${board.boardIdx}">${board.title}</a></td>
                 <td>${board.loginId}</td>

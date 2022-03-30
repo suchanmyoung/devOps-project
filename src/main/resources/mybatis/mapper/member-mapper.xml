@@ -30,6 +30,12 @@
         FROM NAVER_LOGIN
         WHERE LOGIN_EMAIL = #{email}
     </select>
+
+    <select id="findNaverId" parameterType="String">
+        SELECT NAME
+        FROM NAVER_LOGIN
+        WHERE NAME = #{naverId}
+    </select>
     
     <insert id="joinMember" parameterType="member">
         INSERT INTO MEMBER(LOGIN_ID, PASSWORD, USER_EMAIL, NAME, PHONE_NUMBER, SALT)

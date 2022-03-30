@@ -50,6 +50,10 @@ public class MemberService{
         return loginMember;
     }
 
+    public String findNaverId(String naverId){
+        return memberDao.findNaverId(naverId);
+    }
+
     public void logLogin(String loginId, String description) {
         memberDao.logLogin(loginId, description);
     }
