@@ -14,7 +14,7 @@
 <h3 class="text-center">게시글 작성</h3>
 	<form action="/boardForm" method="post" id="boardContents">
 		<input type="text" name="title" value="게시글 제목">
-		<input type="textarea" name="contents" id="contents" rows="10" cols="100">
+		<input type="textarea" name="contents" id="contents" rows="25" cols="200">
 	<button type="submit" id="saveButton" class="btn-primary">게시글 작성</button>
 	</form>
 
@@ -33,6 +33,11 @@
 			$("#boardContents").submit();
 		}
 	})
+
+    var pasteHTML = function(filename){
+        var sHTML = '<img src="${pageContext.request.contextPath}/resources/upload/'+filename+"">';'
+        oEditors.getById["contents"].exec()
+    }
 
 </script>
 

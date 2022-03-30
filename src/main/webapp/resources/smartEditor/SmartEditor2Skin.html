@@ -15,18 +15,15 @@
 <script type="text/javascript" src="./js/SE2BasicCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="./js/smarteditor2.min.js" charset="utf-8"></script>
 
-<!-- 사진첨부샘플  --> 
+<!-- 사진첨부샘플  -->
 <script type="text/javascript" src="./sample/js/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
 </head>
 <body>
-
-
-
 <span id="rev">Version: 2.8.2.4259f59 </span>
 
 <!-- SE2 Markup Start -->	
 <div id="smart_editor2">
-	<div id="smart_editor2_content"><a href="#se2_iframe" class="blind">글쓰기영역으로 바로가기</a>
+	<div id="smart_editor2_content" style="width: 1000px; height: 540px"><a href="#se2_iframe" class="blind">글쓰기영역으로 바로가기</a>
 		<div class="se2_tool" id="se2_tool">
 			
 			<div class="se2_text_tool husky_seditor_text_tool">
@@ -535,7 +532,13 @@
 				</li>
 </ul>
 				<ul class="se2_multy">
-					<li class="se2_mn husky_seditor_ui_photo_attach"><button type="button" class="se2_photo ico_btn"><span class="se2_icon"></span><span class="se2_mntxt">사진<span class="se2_new"></span></span></button></li>
+					<li class="se2_mn husky_seditor_ui_photo_attach">
+						<button type="button" class="se2_photo ico_btn">
+							<span class="se2_icon"></span>
+							<span class="se2_mntxt">사진<span class="se2_new"></span>
+							</span>
+						</button>
+					</li>
 				</ul>
 			</div>
 			<!-- //704이상 -->
@@ -579,8 +582,8 @@
 			
 			
 			<iframe src="about:blank" id="se2_iframe" name="se2_iframe" class="se2_input_wysiwyg" width="400" height="300" title="글쓰기 영역 : 도구 모음은 ALT+F10을, 도움말은 ALT+0을 누르세요." frameborder="0" style="display:block;"></iframe>
-			<textarea name="" rows="10" cols="100" title="HTML 편집 모드" class="se2_input_syntax se2_input_htmlsrc" style="display:none;outline-style:none;resize:none"> </textarea>
-			<textarea name="" rows="10" cols="100" title="TEXT 편집 모드" class="se2_input_syntax se2_input_text" style="display:none;outline-style:none;resize:none;"> </textarea>
+			<textarea name="" rows="20" cols="100" title="HTML 편집 모드" class="se2_input_syntax se2_input_htmlsrc" style="display:none;outline-style:none;resize:none"> </textarea>
+			<textarea name="" rows="20" cols="100" title="TEXT 편집 모드" class="se2_input_syntax se2_input_text" style="display:none;outline-style:none;resize:none;"> </textarea>
 			
 			<!-- 입력창 조절 안내 레이어 -->
 			<div class="ly_controller husky_seditor_resize_notice" style="z-index:20;display:none;">
