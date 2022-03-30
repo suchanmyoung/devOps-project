@@ -18,7 +18,7 @@ public class DBConnectionTest {
     @Test
     public void db_text(){
 
-        String uri = "jdbc:oracle:thin:@ec2-54-211-37-102.compute-1.amazonaws.com:1521/XEXDB";
+        String uri = "jdbc:oracle:thin:@ec2-13-125-253-122.ap-northeast-2.compute.amazonaws.com:1521/XEXDB";
         String user = "emoney";
         String pw = "1234";
 

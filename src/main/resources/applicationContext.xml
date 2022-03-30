@@ -10,7 +10,7 @@
 <!-- Root Context: defines shared resources visible to all other web components -->
 
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
-		<property value="jdbc:oracle:thin:@ec2-54-211-37-102.compute-1.amazonaws.com:1521/XEXDB" name="url"/>
+		<property value="jdbc:oracle:thin:@ec2-13-125-253-122.ap-northeast-2.compute.amazonaws.com:1521/XEXDB" name="url"/>
 		<property value="emoney" name="username"/>
 		<property value="1234" name="password"/>
 	</bean>
