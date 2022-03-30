@@ -42,9 +42,14 @@
 	</div>
 	<div id="button" class="text-center">
 		<button class="btn btn-success" onclick="location.href='/members'">회원가입</button>
-		<button class="btn btn-success" onclick="location.href='/login'">로그인</button>
+		<c:if test="${not empty justLoginMember || not empty naverLoginMember}">
+			<button class="btn btn-success" onclick="location.href='/logout'">로그아웃</button>
+		</c:if>
+		<c:if test="${empty justLoginMember || not empty naverLoginMember}">
+			<button class="btn btn-success" onclick="location.href='/login'">로그인</button>
+		</c:if>
 		<button class="btn btn-success" onclick="location.href='/board'">게시판</button>
-		<button class="btn btn-success" onclick="location.href='/logout'">로그아웃</button>
+
 	</div>
 </div>
 <div class="text-center text-primary">
