@@ -6,7 +6,7 @@
 <html>
 <head>
 	<title>Member</title>
-	<script type="text/javascript" src="/resources/smartEditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+	<script type="text/javascript" src="/resources/smartEditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<style rel="stylesheet" href="/resources/bootstrap/css/bootstrap.css"></style>
 </head>
