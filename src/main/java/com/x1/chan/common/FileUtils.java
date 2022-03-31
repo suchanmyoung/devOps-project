@@ -50,6 +50,7 @@ public class FileUtils {
         sFileInfo += "&sFileName=" + originalFileName;
         sFileInfo += "&sFileURL" + "/resources/upload/" + storedFileName;
         PrintWriter printWriter = response.getWriter();
+        log.info(sFileInfo);
         printWriter.print(sFileInfo);
         printWriter.flush();
         printWriter.close();

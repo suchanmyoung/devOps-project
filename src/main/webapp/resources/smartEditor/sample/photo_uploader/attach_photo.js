@@ -333,15 +333,15 @@ html5Upload()	//변수 선언 및 초기화
     function html5Upload() {	
     	var tempFile,
     		sUploadURL;
-    	
+
     	sUploadURL= "/smartEditorMultiImageUpload"; 	//upload URL
-    	
-    	//파일을 하나씩 보내고, 결과를 받음.
+
+		//파일을 하나씩 보내고, 결과를 받음.
     	for(var j=0, k=0; j < nImageInfoCnt; j++) {
     		tempFile = htImageInfo['img'+j];
-    		try{
+			try{
 	    		if(!!tempFile){
-	    			//Ajax통신하는 부분. 파일과 업로더할 url을 전달한다.
+					//Ajax통신하는 부분. 파일과 업로더할 url을 전달한다.
 	    			callAjaxForHTML5(tempFile,sUploadURL);
 	    			k += 1;
 	    		}
@@ -479,7 +479,7 @@ html5Upload()	//변수 선언 및 초기화
  	function callFileUploader (){
  		oFileUploader = new jindo.FileUploader(jindo.$("uploadInputBox"),{
  			sUrl  : '/singleImageUploader',	//샘플 URL입니다.
- 	        sCallback : 'smarteditor/sample/photo_uploader/callback.html',	//업로드 이후에 iframe이 redirect될 콜백페이지의 주소
+ 	        sCallback : '/smartEditor/sample/photo_uploader/callback.html',	//업로드 이후에 iframe이 redirect될 콜백페이지의 주소
  	    	sFiletype : "*.jpg;*.png;*.bmp;*.gif",						//허용할 파일의 형식. ex) "*", "*.*", "*.jpg", 구분자(;)	
  	    	sMsgNotAllowedExt : 'JPG, GIF, PNG, BMP 확장자만 가능합니다',	//허용할 파일의 형식이 아닌경우에 띄워주는 경고창의 문구
  	    	bAutoUpload : false,									 	//파일이 선택됨과 동시에 자동으로 업로드를 수행할지 여부 (upload 메소드 수행)
