@@ -116,10 +116,14 @@ public class MemberController {
     public String logout(HttpServletRequest request){
         HttpSession session = request.getSession(false);
         Member loginMember = (Member)session.getAttribute(SessionConst.LOGIN_MEMBER);
-        memberService.logLogin(loginMember.getLoginId(), LOGOUT.getValue());
-        if (!ObjectUtils.isEmpty(session)) {
-            session.invalidate();
+
+        if(ObjectUtils.isEmpty(loginMember)){
+            String namverSessionId = (String) session.getAttribute(SessionConst.NAVER_LOGIN_MEMBER);
+            memberService.logLogin(namverSessionId, LOGOUT.getValue());
+        }else{
+            memberService.logLogin(loginMember.getLoginId(), LOGOUT.getValue());
         }
+        session.invalidate();
         return "redirect:/";
     }
 }
