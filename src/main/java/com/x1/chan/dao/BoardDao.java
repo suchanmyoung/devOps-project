@@ -32,6 +32,10 @@ public class BoardDao{
         return boardMapper.getTotal();
     }
 
+    public void boardViewHit(Long boardIdx){
+        boardMapper.boardViewHit(boardIdx);
+    }
+
     public void updateBoard(Board board) {
         boardMapper.updateBoard(board);
     }

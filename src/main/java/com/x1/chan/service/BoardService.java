@@ -45,7 +45,9 @@ public class BoardService{
 
     @Transactional(readOnly = true)
     public Board boardView(Long boardIdx) {
-        return boardDao.boardView(boardIdx);
+        boardDao.boardViewHit(boardIdx);
+        Board boardView = boardDao.boardView(boardIdx);
+        return boardView;
     }
 
     public int getTotal() {

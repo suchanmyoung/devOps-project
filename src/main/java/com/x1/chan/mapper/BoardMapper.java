@@ -13,4 +13,5 @@ public interface BoardMapper {
     int getTotal();
     void updateBoard(Board board);
     void deleteBoard(@Param("boardIdx") Long boardIdx);
+    void boardViewHit(@Param("boardIdx") Long boardIdx);
 }

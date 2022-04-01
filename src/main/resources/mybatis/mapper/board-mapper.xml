@@ -32,6 +32,12 @@
         FROM BOARD
         WHERE BOARD_IDX = #{boardIdx} AND USE_YN = 'Y'
     </select>
+
+    <update id="boardViewHit" parameterType="Long">
+        UPDATE BOARD
+        SET HIT = HIT+1
+        WHERE BOARD_IDX = #{boardIdx}
+    </update>
     
     <select id="getTotal" resultType="int">
         SELECT COUNT(*) FROM BOARD
