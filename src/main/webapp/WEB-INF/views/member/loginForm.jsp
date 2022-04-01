@@ -45,7 +45,7 @@
 			</ul>
 			</li>
 			<li class="item">
-				<button class="submit">login</button>
+				<button class="submit">로그인</button>
 			</li>
 			<li class="item">
 			</li>
