@@ -34,7 +34,6 @@
 		<java-version>8</java-version>
 		<org.springframework-version>4.3.30.RELEASE</org.springframework-version>
 	</properties>
-
 	<dependencies>
 
 		<!-- Spring -->
