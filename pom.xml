@@ -18,6 +18,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>ROOT</finalName>
 	</build>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
