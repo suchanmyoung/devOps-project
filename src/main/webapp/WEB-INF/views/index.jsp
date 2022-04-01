@@ -34,7 +34,7 @@
 				<img width="150px" height="150px" src="${naverLoginMember.profileImage}">
 			</c:when>
 			<c:otherwise>
-				<h2>안녕하세요. 이머니입니다. 반갑습니다. Jenkins 테스트 ${justLoginMember.name}</h2>
+				<h2>안녕하세요. 이머니입니다. 반갑습니다. Jenkins 테스트한번더 ${justLoginMember.name}</h2>
 			</c:otherwise>
 		</c:choose>
 	</div>
