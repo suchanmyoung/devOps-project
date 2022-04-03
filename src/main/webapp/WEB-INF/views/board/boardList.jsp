@@ -16,7 +16,7 @@
     }
 </style>
 <div class="container">
-    현재 서버 포트는 : <%=request.getServerPort()%>
+    현재 서버 포트는 : <%=request.getLocalPort()%>
     <table class="table table-striped">
         <thead>
         <tr>

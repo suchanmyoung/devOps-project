@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <div class="text-center text-primary">
-        현재 서버 포트는 : <%=request.getServerPort()%>
+        현재 서버 포트는 : <%=request.getLocalPort()%>
         <h2>제목 : ${boardView.title}</h2>
         <h3>내용 ${boardView.contents}</h3>
         <h3>조회수 : ${boardView.hit}</h3>
