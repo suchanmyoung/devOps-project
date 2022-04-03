@@ -35,7 +35,7 @@
         <c:when test="${not empty naverMember}">
             <div id="button" class="text-center">
                 <form action="/board/update/${boardView.boardIdx}" method="get">
-                    <input type="hidden" name="loginId" value="${naverMember}">
+                    <input type="hidden" name="loginId" value="${naverMember.name}">
                     <button type="submit" class="btn btn-success">수정</button>
                 </form>
                 <form action="/board/delete" method="post">

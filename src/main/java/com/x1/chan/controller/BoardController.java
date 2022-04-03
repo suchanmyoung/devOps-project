@@ -64,8 +64,8 @@ public class BoardController {
 
         Member loginSession = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
         if (ObjectUtils.isEmpty(loginSession)) {
-            String naverSessionId = (String) session.getAttribute(SessionConst.NAVER_LOGIN_MEMBER);
-            if (naverSessionId.equals(boardView.getLoginId()))
+            NaverLoginDTO naverSessionId = (NaverLoginDTO) session.getAttribute(SessionConst.NAVER_LOGIN_MEMBER);
+            if (naverSessionId.getName().equals(boardView.getLoginId()))
                 model.addAttribute("naverMember", naverSessionId);
         } else {
             if (loginSession.getLoginId().equals(boardView.getLoginId()) || loginSession.getUserType().equals("ADMIN"))
