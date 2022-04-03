@@ -58,6 +58,6 @@
         sFileInfo += "&bNewLine=true";
         sFileInfo += "&sFileName=" + filename;
         sFileInfo += "&sFileURL=/resources/upload/"+realFileNm;
-        System.out.println(sFileInfo);
+        System.out.println("여기지?" + sFileInfo);
     }
 %>
