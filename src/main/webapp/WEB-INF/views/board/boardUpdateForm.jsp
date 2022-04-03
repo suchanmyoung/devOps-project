@@ -18,7 +18,7 @@
 		<input type="textarea" name="contents" id="contents" rows="10" cols="100" value="${boardView.contents}">
 	<button type="submit" id="saveButton" class="btn-primary">수정</button>
 	</form>
-
+<button class="btn btn-success" onclick="location.href='/boardList.jsp'">게시판으로</button>
 <script type="text/javascript">
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({

@@ -84,7 +84,7 @@ public class MemberController {
         NaverLoginDTO naverLoginMember = memberService.loginByNaver(naverMember);
 
         HttpSession httpSession = request.getSession();
-        httpSession.setAttribute(SessionConst.NAVER_LOGIN_MEMBER, naverLoginMember.getName());
+        httpSession.setAttribute(SessionConst.NAVER_LOGIN_MEMBER, naverLoginMember);
         model.addAttribute("naverLoginMember", naverLoginMember);
 
         return "index";

@@ -38,6 +38,7 @@
             </c:forEach>
         </tobdy>
     </table>
+    <button class="btn btn-success" onclick="location.href='/'">홈페이지</button>
 <a class="btn btn-primary float-end" href="/boardForm">글쓰기</a>
     <div>
         <ul class="pagination justify-content-center pageInfo">
