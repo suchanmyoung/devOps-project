@@ -29,7 +29,8 @@
 <body>
 <div class="container">
 	<div class="text-center text-primary">
-		현재 서버 포트는 : <%=request.getLocalPort()%>
+		현재 세션 정보는 : ${loginMember.name} ${naverLoginSession.name}<br>
+		현재 서버 포트는 : <%=request.getLocalPort()%><br>
 		<c:choose>
 		<c:when test="${not empty naverLoginSession}">
 				<h2>네이버 로그인 성공</h2>

@@ -2,13 +2,14 @@ package com.x1.chan.domain;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @ToString
 @Getter
 @Setter
 @AllArgsConstructor
-public class Member {
+public class Member implements Serializable {
     /** 입력사항 */
     private String loginId; // 로그인 아이디
     private String password; // 로그인 패스워드
