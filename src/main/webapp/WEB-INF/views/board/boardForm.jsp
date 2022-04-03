@@ -1,3 +1,4 @@
+<%@ page import="org.springframework.web.util.UrlPathHelper" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 		 pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -10,6 +11,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<style rel="stylesheet" href="/resources/bootstrap/css/bootstrap.css"></style>
 </head>
+
+<%
+	String ctx = application.getRealPath("resources/upload/");
+%>
 <body>
 <h3 class="text-center">게시글 작성</h3>
 	<form action="/boardForm" method="post" id="boardContents">
@@ -18,7 +23,6 @@
 	<button type="submit" id="saveButton" class="btn-primary">게시글 작성</button>
 	</form>
 <button class="btn btn-success" onclick="location.href='/board'">게시판으로</button>
-
 <script type="text/javascript">
 	var oEditors = [];
 	nhn.husky.EZCreator.createInIFrame({
@@ -34,12 +38,6 @@
 			$("#boardContents").submit();
 		}
 	})
-
-    var pasteHTML = function(filename){
-        var sHTML = '<img src="${pageContext.request.contextPath}/resources/upload/'+filename+"">';'
-        oEditors.getById["contents"].exec()
-    }
-
 </script>
 
 </body>

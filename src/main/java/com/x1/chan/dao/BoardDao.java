@@ -2,6 +2,7 @@ package com.x1.chan.dao;
 
 import com.x1.chan.domain.Board;
 import com.x1.chan.domain.Criteria;
+import com.x1.chan.domain.FileVO;
 import com.x1.chan.mapper.BoardMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -42,6 +43,10 @@ public class BoardDao{
 
     public void deleteBoard(Long boardIdx) {
         boardMapper.deleteBoard(boardIdx);
+    }
+
+    public void insertFile(FileVO fileVO){
+        boardMapper.insertFile(fileVO);
     }
 
 }

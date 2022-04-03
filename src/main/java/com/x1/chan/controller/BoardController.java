@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class BoardController {
     @GetMapping("/board/{boardIdx}")
     public String boardView(@PathVariable("boardIdx") Long boardIdx, Model model, HttpServletRequest request) {
         Board boardView = boardService.boardView(boardIdx);
+        String filePath = request.getSession().getServletContext().getRealPath("/") + "resources" + File.separator + "upload" + File.separator;
 
         HttpSession session = request.getSession(false);
 
@@ -71,6 +73,8 @@ public class BoardController {
             if (loginSession.getLoginId().equals(boardView.getLoginId()) || loginSession.getUserType().equals("ADMIN"))
                 model.addAttribute("loginMember", loginSession);
         }
+
+        model.addAttribute("filePath", filePath);
         model.addAttribute("boardView", boardView);
         return "board/boardView";
     }
@@ -97,10 +101,18 @@ public class BoardController {
     public void smartEditorImageUpload (HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         try {
             Member member = (Member) request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
-            String loginId = member.getLoginId();
+            NaverLoginDTO naverLoginDTO = (NaverLoginDTO) request.getSession().getAttribute(SessionConst.NAVER_LOGIN_MEMBER);
+
             FileVO fileVO = new FileVO();
-            fileVO.setLoginId(loginId);
             FileVO returnFilevo = FileUtils.insertMultipleFile(fileVO, request, response);
+
+            if(ObjectUtils.isEmpty(member)){
+                returnFilevo.setLoginId(naverLoginDTO.getName());
+            }else{
+                returnFilevo.setLoginId(member.getLoginId());
+            }
+            log.info(returnFilevo.toString());
+            boardService.insertFile(returnFilevo);
         } catch (Exception e) {
             e.printStackTrace();
         }

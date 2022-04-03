@@ -334,7 +334,7 @@ html5Upload()	//변수 선언 및 초기화
     	var tempFile,
     		sUploadURL;
 
-    	sUploadURL= "/smartEditorMultiImageUpload"; 	//upload URL
+    	sUploadURL= "smartEditorUploader.jsp"; 	//upload URL
 
 		//파일을 하나씩 보내고, 결과를 받음.
     	for(var j=0, k=0; j < nImageInfoCnt; j++) {

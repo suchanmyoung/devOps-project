@@ -3,6 +3,7 @@ package com.x1.chan.service;
 import com.x1.chan.dao.BoardDao;
 import com.x1.chan.domain.Board;
 import com.x1.chan.domain.Criteria;
+import com.x1.chan.domain.FileVO;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,10 @@ public class BoardService{
         boardDao.boardViewHit(boardIdx);
         Board boardView = boardDao.boardView(boardIdx);
         return boardView;
+    }
+
+    public void insertFile(FileVO fileVO){
+        boardDao.insertFile(fileVO);
     }
 
     public int getTotal() {

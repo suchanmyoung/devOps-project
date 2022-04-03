@@ -41,7 +41,6 @@ public class FileUtils {
         FileVO returnFileVO = new FileVO();
         returnFileVO.setOriginalFileName(originalFileName);
         returnFileVO.setStoredFileName(storedFileName);
-        returnFileVO.setFileSize(Long.valueOf(Integer.parseInt(request.getHeader("file-size"))));
         returnFileVO.setFileExt(originalFileName.substring(originalFileName.lastIndexOf(".")));
         returnFileVO.setFilePath(filePath);
 
