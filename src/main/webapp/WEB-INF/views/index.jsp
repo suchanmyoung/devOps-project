@@ -32,8 +32,6 @@
 		현재 세션 정보는 : ${loginMember.name} ${naverLoginSession.name}<br>
 		현재 서버 포트는 : <%=request.getLocalPort()%><br>
 		<c:choose>
-
-			하나의 서버 - 하나의
 		<c:when test="${not empty naverLoginSession}">
 				<h2>네이버 로그인 성공</h2>
 				<h3>${naverLoginSession.name} 님 환영합니다.</h3>
