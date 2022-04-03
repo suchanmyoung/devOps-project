@@ -51,10 +51,6 @@ public class BoardService{
         return boardView;
     }
 
-    public void insertFile(FileVO fileVO){
-        boardDao.insertFile(fileVO);
-    }
-
     public int getTotal() {
         return boardDao.getTotal();
     }

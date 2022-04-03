@@ -15,7 +15,6 @@
         현재 서버 포트는 : <%=request.getLocalPort()%>
         <h2>제목 : ${boardView.title}</h2>
         <h3>내용 ${boardView.contents}</h3>
-
         <h3>조회수 : ${boardView.hit}</h3>
         <h3>작성자 : ${boardView.loginId}</h3>
         <h3>작성일자 : ${boardView.regDate}</h3>

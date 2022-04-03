@@ -15,5 +15,4 @@ public interface BoardMapper {
     void updateBoard(Board board);
     void deleteBoard(@Param("boardIdx") Long boardIdx);
     void boardViewHit(@Param("boardIdx") Long boardIdx);
-    void insertFile(FileVO fileVO);
 }

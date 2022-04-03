@@ -54,10 +54,6 @@
         SET USE_YN = 'N'
         WHERE BOARD_IDX = #{boardIdx}
     </update>
-    
-    <insert id="insertFile" parameterType="file">
-        INSERT INTO IMAGE_FILE(FILE_SEQ, ORIGINAL_FILENAME, STORED_FILENAME, LOGIN_ID, FILE_EXT, FILE_PATH)
-        VALUES (SEQ_FILE.NEXTVAL, #{originalFileName}, #{storedFileName}, #{loginId}, #{fileExt}, #{filePath})
-    </insert>
+
 
 </mapper>

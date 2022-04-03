@@ -18,7 +18,7 @@ public class BoardDao{
     }
 
     public void write(String loginId, String contents, String title) {
-               boardMapper.write(loginId, contents, title);
+        boardMapper.write(loginId, contents, title);
     }
 
     public List<Board> boardList(Criteria criteria) {
@@ -43,10 +43,6 @@ public class BoardDao{
 
     public void deleteBoard(Long boardIdx) {
         boardMapper.deleteBoard(boardIdx);
-    }
-
-    public void insertFile(FileVO fileVO){
-        boardMapper.insertFile(fileVO);
     }
 
 }
