@@ -30,10 +30,8 @@
 <div class="container">
 	<div class="text-center text-primary">
 		<c:choose>
-		<c:when test="${naverLoginSession != null}">
+		<c:when test="${not empty naverLoginSession}">
 				<h2>네이버 로그인 성공</h2>
-				<h3>${naverLoginSession.name} 님 환영합니다.</h3>
-				<img width="150px" height="150px" src="${naverLoginSession.profileImage}">
 			</c:when>
 			<c:otherwise>
 				<h2>안녕하세요. 이머니입니다. 반갑습니다.${loginMember.name}</h2>
