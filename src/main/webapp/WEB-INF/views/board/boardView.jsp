@@ -46,7 +46,7 @@
         </c:when>
     </c:choose>
     </div>
-    <button class="btn btn-success" onclick="location.href='/boardList.jsp'">게시판으로</button>
+    <button class="btn btn-success" onclick="location.href='/board'">게시판으로</button>
 </div>
 </body>
 </html>

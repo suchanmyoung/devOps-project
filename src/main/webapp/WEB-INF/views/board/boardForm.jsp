@@ -17,7 +17,7 @@
 		<input type="textarea" name="contents" id="contents" rows="25" cols="200">
 	<button type="submit" id="saveButton" class="btn-primary">게시글 작성</button>
 	</form>
-<button class="btn btn-success" onclick="location.href='/boardList.jsp'">게시판으로</button>
+<button class="btn btn-success" onclick="location.href='/board'">게시판으로</button>
 
 <script type="text/javascript">
 	var oEditors = [];

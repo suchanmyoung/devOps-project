@@ -91,6 +91,7 @@
 			</ul>
 		</div>
 	</form>
+	<button class="btn btn-success" onclick="location.href='/'">홈페이지</button>
 </div>
 </body>
 </html>
