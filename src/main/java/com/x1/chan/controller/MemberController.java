@@ -115,8 +115,8 @@ public class MemberController {
         Member loginMember = (Member)session.getAttribute(SessionConst.LOGIN_MEMBER);
 
         if(ObjectUtils.isEmpty(loginMember)){
-            String namverSessionId = (String) session.getAttribute(SessionConst.NAVER_LOGIN_MEMBER);
-            memberService.logLogin(namverSessionId, LOGOUT.getValue());
+            NaverLoginDTO namverSessionId = (NaverLoginDTO) session.getAttribute(SessionConst.NAVER_LOGIN_MEMBER);
+            memberService.logLogin(namverSessionId.getName(), LOGOUT.getValue());
         }else{
             memberService.logLogin(loginMember.getLoginId(), LOGOUT.getValue());
         }
