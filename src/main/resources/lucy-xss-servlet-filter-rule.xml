@@ -43,5 +43,8 @@
             </param>
         </params>
     </url-rule>
+        <url-rule>
+            <url disable="true">/login</url>
+        </url-rule>
     </url-rule-set>
 </config>
