@@ -10,6 +10,7 @@ import com.x1.chan.domain.NaverLoginDTO;
 import com.x1.chan.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -69,7 +70,6 @@ public class MemberController {
 
         generator.initialize(2048);
         KeyPair keyPair = generator.genKeyPair();
-
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
 
         PublicKey publicKey = keyPair.getPublic();
@@ -116,79 +116,43 @@ public class MemberController {
     }
 
     @PostMapping(value = "/login")
-    public String login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            log.info("들어옴");
+    public String login(@Param("securedUsername") String securedUsername, @RequestParam("securedPassword") String securedPassword, Model model,
+    HttpServletRequest request) throws ServletException, IOException {
+        log.info("클라이언트에서 암호화된 ID가 전달됩니다." + securedUsername);
+        log.info("클라이언트에서 암호화된 PW가 전달됩니다." + securedPassword);
 
-            String securedUsername = request.getParameter("securedUsername");
-            String securedPassword = request.getParameter("securedPassword");
+        HttpSession session = request.getSession(false);
+        PrivateKey privateKey = (PrivateKey) session.getAttribute("_RSA_WEB_Key_");
+        session.removeAttribute("_RSA_WEB_Key_");
 
-            log.info(securedPassword);
-            log.info(securedUsername);
+        try {
+            String username = Rsa.decryptRsa(privateKey, securedUsername);
+            String password = Rsa.decryptRsa(privateKey, securedPassword);
+            Member loginMember = memberService.login(username, password);
+            log.info(loginMember.toString());
 
-            HttpSession session = request.getSession();
-            PrivateKey privateKey = (PrivateKey) session.getAttribute("_RSA_WEB_Key_");
-            session.removeAttribute("_RSA_WEB_Key_"); // 키의 재사용을 막는다. 항상 새로운 키를 받도록 강제.
-
-            if (privateKey == null) {
-                throw new RuntimeException("암호화 비밀키 정보를 찾을 수 없습니다.");
+            if (ObjectUtils.isEmpty(loginMember)) {
+                model.addAttribute("loginFailMsg", "아이디가 맞지 않습니다.");
+                return "member/loginForm";
             }
-            try {
-                String username = decryptRsa(privateKey, securedUsername);
-                String password = decryptRsa(privateKey, securedPassword);
-                log.info(username);
-                log.info(password);
-                request.setAttribute("username", username);
-                request.setAttribute("password", password);
-            } catch (Exception ex) {
-                throw new ServletException(ex.getMessage(), ex);
+
+            String encryptPassword = Encrypt.setEncryptPassword(password, loginMember.getSalt());
+            if (!encryptPassword.equals(loginMember.getPassword())) {
+                model.addAttribute("passwordFailMsg", "비밀번호가 맞지 않습니다.");
+                return "member/loginForm";
             }
-            return "index";
+
+            model.addAttribute("justLoginMember", loginMember);
+            session = request.getSession();
+            session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+
+        } catch (Exception e) {
+            log.error("RSA 복호화 에러");
+            e.printStackTrace();
         }
 
-        private String decryptRsa(PrivateKey privateKey, String securedValue) throws Exception {
-            System.out.println("will decrypt : " + securedValue);
-            Cipher cipher = Cipher.getInstance("RSA");
-            byte[] encryptedBytes = hexToByteArray(securedValue);
-            cipher.init(Cipher.DECRYPT_MODE, privateKey);
-            byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
-            String decryptedValue = new String(decryptedBytes, "utf-8"); // 문자 인코딩 주의.
-            return decryptedValue;
-        }
-
-        /**
-         * 16진 문자열을 byte 배열로 변환한다.
-         */
-        public static byte[] hexToByteArray(String hex) {
-            if (hex == null || hex.length() % 2 != 0) {
-                return new byte[]{};
-            }
-
-            byte[] bytes = new byte[hex.length() / 2];
-            for (int i = 0; i < hex.length(); i += 2) {
-                byte value = (byte) Integer.parseInt(hex.substring(i, i + 2), 16);
-                bytes[(int) Math.floor(i / 2)] = value;
-            }
-            return bytes;
-        }
-
-
-//        Member loginMember = memberService.login(loginId, password);
-//        log.info(loginMember.toString());
-//
-//        if (ObjectUtils.isEmpty(loginMember)) {
-//            model.addAttribute("loginFailMsg", "아이디가 맞지 않습니다.");
-//            return "member/loginForm";
-//        }
-//
-//        String encryptPassword = Encrypt.setEncryptPassword(password, loginMember.getSalt());
-//        if (!encryptPassword.equals(loginMember.getPassword())) {
-//            model.addAttribute("passwordFailMsg", "비밀번호가 맞지 않습니다.");
-//            return "member/loginForm";
-//        }
-//
-//        model.addAttribute("justLoginMember", loginMember);
-//        HttpSession session = request.getSession();
-//        session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+        return "index";
+    }
 
     @GetMapping(value = "/logout")
     public String logout(HttpServletRequest request){
