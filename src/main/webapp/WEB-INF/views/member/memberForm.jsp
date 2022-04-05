@@ -105,40 +105,33 @@
 		let pwdRe = document.getElementById("passwordRepeat").value;
 		let phoneNum = document.getElementById("phoneNum").value;
 
-
 		if (pwd != pwdRe) {
 			alert("비밀번호가 일치하지 않습니다.");
 			pwdRe.focus();
 			return false;
 		}
-
-
 		const phoneNumberCheck = /^01[0179][0-9]{7,8}$/;
 		if (!phoneNumberCheck.test(phoneNum)) {
 			alert("휴대폰 번호 형식을 지켜주세요.");
 			phoneNum.focus();
 			return false;
 		}
-
 		const idCheck = /^[A-Za-z0-9+]*$/;
 		if (!idCheck.test(uid)){
 			alert("id는 영문 또는 숫자로 입력해주세요");
 			document.getElementById("id");
 			return false;
 		}
-
 		const passwordCheck = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
 		if (!passwordCheck.test(pwd)){
 			alert("비밀번호는 8자 이상, 영문과 숫자, 특수문자 조합으로 입력해주세요.");
 			document.getElementById("password").focus();
 			return false;
 		}
-
 		if(!isIdCheck){
 			alert("아이디 중복확인을 해주세요.")
 			return false;
 		}
-
 		document.getElementById("memberForm").submit();
 	}
 

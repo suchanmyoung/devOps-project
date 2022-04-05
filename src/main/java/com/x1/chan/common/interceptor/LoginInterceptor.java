@@ -16,7 +16,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
         Member loginSession = (Member)request.getSession().getAttribute(SessionConst.LOGIN_MEMBER);
         NaverLoginDTO naverSession = (NaverLoginDTO) request.getSession().getAttribute(SessionConst.NAVER_LOGIN_MEMBER);
 
@@ -26,9 +25,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
             response.sendRedirect("/login");
             return false;
         }
-
         return true;
     }
-
-
 }

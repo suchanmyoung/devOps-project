@@ -20,7 +20,7 @@
         <h3>작성일자 : ${boardView.regDate}</h3>
 
     <c:choose>
-        <c:when test="${not empty loginMember}">
+        <c:when test="${loginMember.loginId == boardView.loginId || loginMember.userType eq 'ADMIN'}">
         <div id="button" class="text-center">
             <form action="/board/update/${boardView.boardIdx}" method="get">
                 <input type="hidden" name="loginId" value="${loginMember.loginId}">
@@ -32,7 +32,7 @@
             </form>
         </div>
         </c:when>
-        <c:when test="${not empty naverMember}">
+        <c:when test="${naverMember.name == boardView.loginId || loginMember.userType eq 'ADMIN'}">
             <div id="button" class="text-center">
                 <form action="/board/update/${boardView.boardIdx}" method="get">
                     <input type="hidden" name="loginId" value="${naverMember.name}">

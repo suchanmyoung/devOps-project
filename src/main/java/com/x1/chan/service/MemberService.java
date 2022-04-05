@@ -23,6 +23,7 @@ public class MemberService{
 
     private final MemberDao memberDao;
 
+    @Transactional
     public Member join(Member member) {
         Member secureMember = Encrypt.setEncryptPassword(member);
         memberDao.join(secureMember);
@@ -33,7 +34,6 @@ public class MemberService{
     @Transactional
     public Member login(String loginId, String password){
         Member loginMember = memberDao.findByLoginId(loginId, password);
-
         logLogin(loginId, LOGIN.getValue());
         return loginMember;
     }

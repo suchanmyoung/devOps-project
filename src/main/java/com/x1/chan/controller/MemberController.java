@@ -51,19 +51,15 @@ public class MemberController {
 
     @PostMapping(value = "/members")
     public String join(Member member, Model model, HttpServletRequest request) {
+
         if (StringUtils.isEmpty(member.getLoginId()) || StringUtils.isEmpty(member.getPassword())) {
             log.error("아이디, 비밀번호 Null");
             return "member/memberForm";
         }
 
         Member loginMember = memberService.join(member);
-
-        model.addAttribute("redirectUrl", "/");
-        model.addAttribute("successMsg", "회원가입 되었습니다.");
-
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
-
         model.addAttribute("loginMember", loginMember);
         return "redirect:/";
     }
@@ -125,8 +121,6 @@ public class MemberController {
     @PostMapping(value = "/login")
     public String login(@Param("securedUsername") String securedUsername, @RequestParam("securedPassword") String securedPassword, Model model,
                         HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        log.info("클라이언트에서 암호화된 ID가 전달됩니다." + securedUsername);
-        log.info("클라이언트에서 암호화된 PW가 전달됩니다." + securedPassword);
 
         HttpSession session = request.getSession(false);
         PrivateKey privateKey = (PrivateKey) session.getAttribute("_RSA_WEB_Key_");
@@ -166,8 +160,8 @@ public class MemberController {
         Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
 
         if (ObjectUtils.isEmpty(loginMember)) {
-            NaverLoginDTO namverSessionId = (NaverLoginDTO) session.getAttribute(SessionConst.NAVER_LOGIN_MEMBER);
-            memberService.logLogin(namverSessionId.getName(), LOGOUT.getValue());
+            NaverLoginDTO naverSessionId = (NaverLoginDTO) session.getAttribute(SessionConst.NAVER_LOGIN_MEMBER);
+            memberService.logLogin(naverSessionId.getName(), LOGOUT.getValue());
         } else {
             memberService.logLogin(loginMember.getLoginId(), LOGOUT.getValue());
         }

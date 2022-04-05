@@ -8,8 +8,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface BoardMapper {
-    void write(@Param("loginId") String loginId, @Param("contents") String contents, @Param("title") String title);
+
     List<Board> boardList(Criteria criteria);
+    void write(@Param("loginId") String loginId, @Param("contents") String contents, @Param("title") String title);
     Board boardView(@Param("boardIdx") Long boardIdx);
     int getTotal();
     void updateBoard(Board board);

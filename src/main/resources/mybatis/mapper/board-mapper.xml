@@ -19,11 +19,11 @@
 
     <select id="boardList" resultMap="boardResultMap">
         <![CDATA[
-        SELECT *
+        SELECT BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE, USE_YN
         FROM(SELECT ROWNUM RN, BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE, USE_YN
              FROM (SELECT ROWNUM RN, BOARD_IDX, LOGIN_ID, HIT, TITLE, REGDATE, USE_YN
-                   FROM BOARD ORDER BY BOARD_IDX DESC))
-        WHERE RN BETWEEN (#{pageNum} - 1) * #{amount} AND #{pageNum} * #{amount} AND USE_YN = 'Y'
+                   FROM BOARD WHERE USE_YN = 'Y' ORDER BY BOARD_IDX DESC))
+        WHERE RN BETWEEN (#{pageNum} - 1) * #{amount} AND #{pageNum} * #{amount}
         ]]>
     </select>
 
@@ -41,6 +41,7 @@
     
     <select id="getTotal" resultType="int">
         SELECT COUNT(*) FROM BOARD
+        WHERE USE_YN = 'Y'
     </select>
     
     <update id="updateBoard" parameterType="board">
@@ -51,7 +52,8 @@
     
     <update id="deleteBoard" parameterType="long">
         UPDATE BOARD
-        SET USE_YN = 'N'
+        SET USE_YN = 'N',
+        BOARD_IDX = ARRAY_SEQ.NEXTVAL
         WHERE BOARD_IDX = #{boardIdx}
     </update>
 

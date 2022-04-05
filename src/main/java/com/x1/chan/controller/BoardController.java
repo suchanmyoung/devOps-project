@@ -61,10 +61,8 @@ public class BoardController {
     @GetMapping("/board/{boardIdx}")
     public String boardView(@PathVariable("boardIdx") Long boardIdx, Model model, HttpServletRequest request) {
         Board boardView = boardService.boardView(boardIdx);
-        String filePath = request.getSession().getServletContext().getRealPath("/") + "resources" + File.separator + "upload" + File.separator;
 
         HttpSession session = request.getSession(false);
-
         Member loginSession = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
         if (ObjectUtils.isEmpty(loginSession)) {
             NaverLoginDTO naverSessionId = (NaverLoginDTO) session.getAttribute(SessionConst.NAVER_LOGIN_MEMBER);
@@ -75,7 +73,6 @@ public class BoardController {
                 model.addAttribute("loginMember", loginSession);
         }
 
-        model.addAttribute("filePath", filePath);
         model.addAttribute("boardView", boardView);
         return "board/boardView";
     }
