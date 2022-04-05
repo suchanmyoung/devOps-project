@@ -17,6 +17,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -117,7 +118,7 @@ public class MemberController {
 
     @PostMapping(value = "/login")
     public String login(@Param("securedUsername") String securedUsername, @RequestParam("securedPassword") String securedPassword, Model model,
-    HttpServletRequest request) throws ServletException, IOException {
+                        HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         log.info("클라이언트에서 암호화된 ID가 전달됩니다." + securedUsername);
         log.info("클라이언트에서 암호화된 PW가 전달됩니다." + securedPassword);
 
@@ -126,10 +127,10 @@ public class MemberController {
         session.removeAttribute("_RSA_WEB_Key_");
 
         try {
+            log.info("널 포인터 어디서?");
             String username = Rsa.decryptRsa(privateKey, securedUsername);
             String password = Rsa.decryptRsa(privateKey, securedPassword);
             Member loginMember = memberService.login(username, password);
-            log.info(loginMember.toString());
 
             if (ObjectUtils.isEmpty(loginMember)) {
                 model.addAttribute("loginFailMsg", "아이디가 맞지 않습니다.");
@@ -149,8 +150,8 @@ public class MemberController {
         } catch (Exception e) {
             log.error("RSA 복호화 에러");
             e.printStackTrace();
+            response.sendRedirect("/login");
         }
-
         return "index";
     }
 

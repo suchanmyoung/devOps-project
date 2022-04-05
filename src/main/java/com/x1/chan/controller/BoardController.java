@@ -1,10 +1,8 @@
 package com.x1.chan.controller;
 
-import com.x1.chan.common.FileUtils;
 import com.x1.chan.common.session.SessionConst;
 import com.x1.chan.domain.*;
 import com.x1.chan.service.BoardService;
-import com.x1.chan.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,12 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.*;
-import java.text.SimpleDateFormat;
+import java.io.File;
 import java.util.List;
-import java.util.UUID;
+
+/**
+ * BindingResult가 있으면 -> 오류정보(FieldError)를 BindingResult에 담아서 컨트롤러를 정상 호출
+ * 없으면 -> 400 에러 발생
+ */
 
 @Slf4j
 @RequiredArgsConstructor

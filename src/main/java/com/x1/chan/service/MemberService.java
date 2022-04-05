@@ -9,6 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
+
+import java.util.Objects;
 
 import static com.x1.chan.domain.LoginDescription.LOGIN;
 import static com.x1.chan.domain.LoginDescription.NAVER_LOGIN;
@@ -30,6 +33,7 @@ public class MemberService{
     @Transactional
     public Member login(String loginId, String password){
         Member loginMember = memberDao.findByLoginId(loginId, password);
+
         logLogin(loginId, LOGIN.getValue());
         return loginMember;
     }

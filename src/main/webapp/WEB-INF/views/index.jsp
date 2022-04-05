@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 		 pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
 	<title>Home</title>
@@ -29,6 +30,7 @@
 
 <body>
 <div class="container">
+
 	<div class="text-center text-primary">
 		현재 세션 정보는 : ${loginMember.name} ${naverLoginSession.name}<br>
 		현재 서버 포트는 : <%=request.getLocalPort()%><br>
