@@ -53,4 +53,9 @@
         VALUES (SEQ_LOG.NEXTVAL, #{loginId}, #{description})
     </insert>
 
+    <select id="idCheck" parameterType="String" resultType="String">
+       SELECT LOGIN_ID
+       FROM MEMBER
+       WHERE LOGIN_ID = #{userId}
+    </select>
 </mapper>

@@ -58,4 +58,8 @@ public class MemberDao{
     public void logLogin(String loginId, String description) {
         memberMapper.logLogin(loginId, description);
     }
+
+    public String idCheck(String userId){
+        return memberMapper.idCheck(userId);
+    }
 }

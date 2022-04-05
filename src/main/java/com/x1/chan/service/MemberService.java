@@ -62,5 +62,8 @@ public class MemberService{
         memberDao.logLogin(loginId, description);
     }
 
+    public String idCheck(String userId){
+        return memberDao.idCheck(userId);
+    }
 
 }

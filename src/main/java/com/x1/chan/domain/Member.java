@@ -1,9 +1,12 @@
 package com.x1.chan.domain;
 
+import com.sun.istack.internal.NotNull;
 import lombok.*;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
+
 
 @ToString
 @Getter
@@ -11,7 +14,10 @@ import java.util.Date;
 @AllArgsConstructor
 public class Member implements Serializable {
     /** 입력사항 */
+
+    @NotEmpty
     private String loginId; // 로그인 아이디
+
     private String password; // 로그인 패스워드
     private String userEmail; // 이메일
     private String name; // 이름

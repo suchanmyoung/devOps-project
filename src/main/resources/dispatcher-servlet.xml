@@ -25,6 +25,7 @@
 			<mapping path="/**"/>
 			<exclude-mapping path="/"/>
 			<exclude-mapping path="/resources/**"/>
+			<exclude-mapping path="/idCheck"/>
 			<exclude-mapping path="/login"/>
 			<exclude-mapping path="/members"/>
 			<exclude-mapping path="/common/naver"/>

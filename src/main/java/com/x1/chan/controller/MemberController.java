@@ -17,10 +17,10 @@ import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.crypto.Cipher;
 import javax.servlet.ServletException;
@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
+import java.util.Objects;
 
 import static com.x1.chan.domain.LoginDescription.LOGOUT;
 
@@ -50,6 +51,11 @@ public class MemberController {
 
     @PostMapping(value = "/members")
     public String join(Member member, Model model, HttpServletRequest request) {
+        if (StringUtils.isEmpty(member.getLoginId()) || StringUtils.isEmpty(member.getPassword())) {
+            log.error("아이디, 비밀번호 Null");
+            return "member/memberForm";
+        }
+
         Member loginMember = memberService.join(member);
 
         model.addAttribute("redirectUrl", "/");
@@ -63,7 +69,7 @@ public class MemberController {
     }
 
     @GetMapping(value = "/login")
-    public String loginForm(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) throws NoSuchAlgorithmException, InvalidKeySpecException{
+    public String loginForm(HttpSession session, Model model, HttpServletRequest request, HttpServletResponse response) throws NoSuchAlgorithmException, InvalidKeySpecException {
         String naverAuthUrl = naverLogin.getAuthorizationUrl(session);
         model.addAttribute("url", naverAuthUrl);
 
@@ -118,7 +124,7 @@ public class MemberController {
 
     @PostMapping(value = "/login")
     public String login(@Param("securedUsername") String securedUsername, @RequestParam("securedPassword") String securedPassword, Model model,
-                        HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+                        HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.info("클라이언트에서 암호화된 ID가 전달됩니다." + securedUsername);
         log.info("클라이언트에서 암호화된 PW가 전달됩니다." + securedPassword);
 
@@ -127,7 +133,6 @@ public class MemberController {
         session.removeAttribute("_RSA_WEB_Key_");
 
         try {
-            log.info("널 포인터 어디서?");
             String username = Rsa.decryptRsa(privateKey, securedUsername);
             String password = Rsa.decryptRsa(privateKey, securedPassword);
             Member loginMember = memberService.login(username, password);
@@ -156,17 +161,28 @@ public class MemberController {
     }
 
     @GetMapping(value = "/logout")
-    public String logout(HttpServletRequest request){
+    public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-        Member loginMember = (Member)session.getAttribute(SessionConst.LOGIN_MEMBER);
+        Member loginMember = (Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
 
-        if(ObjectUtils.isEmpty(loginMember)){
+        if (ObjectUtils.isEmpty(loginMember)) {
             NaverLoginDTO namverSessionId = (NaverLoginDTO) session.getAttribute(SessionConst.NAVER_LOGIN_MEMBER);
             memberService.logLogin(namverSessionId.getName(), LOGOUT.getValue());
-        }else{
+        } else {
             memberService.logLogin(loginMember.getLoginId(), LOGOUT.getValue());
         }
         session.invalidate();
         return "redirect:/";
+    }
+
+    @PostMapping(value = "idCheck")
+    @ResponseBody
+    public String idCheck(@RequestBody String userId){
+        boolean isIdNull = ObjectUtils.isEmpty(memberService.idCheck(userId));
+        if(isIdNull){
+            return "null";
+        }
+
+        return "alreadyId";
     }
 }
