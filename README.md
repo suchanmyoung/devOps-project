@@ -30,4 +30,6 @@ eMoney-IT Service-WEB-Practice
     * Jenkins
     
 프로젝트 배포 구조
-![배포 구조도](https://user-images.githubusercontent.com/87016418/161779599-e9ec1746-89b8-400c-92f2-1c634eb3d8d8.png)
+![프로젝트 배포 ](https://user-images.githubusercontent.com/87016418/161780503-e4d51777-c169-42e6-9d80-a0c9c0905e2e.png)
+
+
