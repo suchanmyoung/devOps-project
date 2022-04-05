@@ -30,6 +30,19 @@
 	{
 		var username = document.getElementById("username").value;
 		var password = document.getElementById("password").value;
+
+		if(username == ""){
+			alert("아이디를 입력하세요.");
+			document.getElementById("username").focus();
+			return false;
+		}
+
+		if(password == ""){
+			alert("비밀번호를 입력하세요.");
+			document.getElementById("password").focus();
+			return false;
+		}
+
 		try {
 			var rsaPublicKeyModulus = document.getElementById("rsaPublicKeyModulus").value;
 			var rsaPublicKeyExponent = document.getElementById("rsaPublicKeyExponent").value;
@@ -37,6 +50,7 @@
 		} catch(err) {
 			alert(err);
 		}
+
 		return false;
 	}
 
@@ -58,11 +72,11 @@
 
 <div class="register">
 	<h3>로그인</h3>
-				<label for="username">사용자ID : <input type="text" id="username" size="16"/></label>
-				<label for="password">비밀번호 : <input type="password" id="password" size="16" /></label>
-				<input type="hidden" id="rsaPublicKeyModulus" value="${publicKeyModulus}" />
+				<label for="username">사용자ID : <input type="text" id="username"  size="16"/></label>
+				<label for="password">비밀번호 : <input type="password" id="password"  size="16" /></label>
+				<input type="hidden" id="rsaPublicKeyModulus" value="${publicKeyModulus}"/>
 				<input type="hidden" id="rsaPublicKeyExponent" value="${publicKeyExponent}" />
-				<button class="submit" onclick="validateEncryptedForm(); return false;">로그인</button>
+				<button class="submit" onclick="validateEncryptedForm();">로그인</button>
 		</div>
 	</form>
 
