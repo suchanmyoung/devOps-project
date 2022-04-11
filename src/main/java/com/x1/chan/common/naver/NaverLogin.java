@@ -15,7 +15,7 @@ import java.util.UUID;
 public class NaverLogin {
     private final static String CLIENT_ID = "K_8Zdcd7bBk2VkmEpUk5";
     private final static String CLIENT_SECRET = "dln0kzcW1p";
-    private final static String REDIRECT_URI = "http://ec2-13-125-253-122.ap-northeast-2.compute.amazonaws.com/login/oauth2/naver";
+    private final static String REDIRECT_URI = "http://chan.x1.co.kr/login/oauth2/naver";
     private final static String SESSION_STATE =  "ouath_state";
     private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";
 
