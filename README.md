@@ -27,4 +27,9 @@ eMoney-IT Service-WEB-Practice
 
 * DevOps
     * Docker Container
-    * Jenkins 
+    * Jenkins
+    
+프로젝트 배포 구조
+![프로젝트 배포 ](https://user-images.githubusercontent.com/87016418/161780503-e4d51777-c169-42e6-9d80-a0c9c0905e2e.png)
+
+

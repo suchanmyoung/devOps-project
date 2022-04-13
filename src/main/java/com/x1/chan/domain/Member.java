@@ -1,6 +1,5 @@
 package com.x1.chan.domain;
 
-import com.sun.istack.internal.NotNull;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
