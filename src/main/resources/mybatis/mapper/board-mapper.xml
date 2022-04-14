@@ -52,8 +52,7 @@
     
     <update id="deleteBoard" parameterType="long">
         UPDATE BOARD
-        SET USE_YN = 'N',
-        BOARD_IDX = ARRAY_SEQ.NEXTVAL
+        SET USE_YN = 'N'
         WHERE BOARD_IDX = #{boardIdx}
     </update>
 

@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class Criteria {
     /* 현재 페이지 */
-    public int pageNum;
+    private int pageNum;
 
     /* 한 페이지 당 보여질 게시물 갯수 */
     private int amount;

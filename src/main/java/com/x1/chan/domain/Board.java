@@ -3,9 +3,11 @@ package com.x1.chan.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.sql.Date;
 
+@ToString
 @Getter
 @Setter
 @AllArgsConstructor
