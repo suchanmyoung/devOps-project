@@ -1,5 +1,4 @@
 # devOps project
-eMoney-IT Service-WEB-Practice
 * AWS 환경
     * OpenJDK 8
     * Oracle 11g
